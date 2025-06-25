@@ -61,21 +61,53 @@
             margin-right: 10px;
             vertical-align: middle;
         }
+        /* Ensure hamburger menu is visible on mobile */
+        @media (max-width: 767px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .navbar-collapse {
+                background-color: #fff;
+                padding: 1rem;
+            }
+        }
+        /* Ensure horizontal menu on large screens */
+        @media (min-width: 768px) {
+            .navbar-nav {
+                flex-direction: row !important;
+                gap: 1.5rem;
+            }
+            .nav-item {
+                display: inline-flex;
+                align-items: center;
+            }
+            .nav-link {
+                white-space: nowrap;
+                padding: 0.5rem 1rem !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-light">
     <!-- Header -->
     <header class="bg-white shadow">
-        <nav class="container container-lg mx-auto px-4 py-3 d-flex justify-content-between align-items-center">
-            <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
-                <img src="/img/logo.png" alt="English Chat Logo" class="logo">
-                English Chat
-            </h1>
-            <ul class="d-flex list-unstyled gap-4 mb-0">
-                <li><a href="#home" class="text-dark text-decoration-none">Home</a></li>
-                <li><a href="#about" class="text-dark text-decoration-none">About</a></li>
-                <li><a href="#disqus_thread" class="text-dark text-decoration-none">Join the Chat</a></li>
-            </ul>
+        <nav class="container container-lg mx-auto px-4 py-3 navbar navbar-expand-md">
+            <div class="d-flex align-items-center w-100">
+                <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
+                    <img src="/img/logo.png" alt="English Chat Logo" class="logo">
+                    English Chat
+                </h1>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a href="#home" class="nav-link text-dark">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link text-dark">About</a></li>
+                    <li class="nav-item"><a href="#disqus_thread" class="nav-link text-dark">Join the Chat</a></li>
+                </ul>
+            </div>
         </nav>
     </header>
 
