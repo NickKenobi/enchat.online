@@ -166,21 +166,41 @@
             <h3 class="fs-2 fw-bold text-center mb-5">Join the Conversation</h3>
             <p class="text-center mb-4">Use the Disqus comment section below to practice your English. Introduce yourself, ask questions, or discuss your favorite topics!</p>
             <div id="disqus_thread"></div>
+            <div id="disqus-load" style="text-align: center; padding: 10px;">
+                <button onclick="loadDisqus()" class="btn btn-primary">Load Comments</button>
+            </div>
             <script>
-                /**
-                 *  Disqus configuration
-                 */
-                var disqus_config = function () {
-                    this.page.url = 'https://engspace.org/';
-                    this.page.identifier = 'english-chat-home';
-                };
-
-                (function() {
-                    var d = document, sElement = d.createElement('script');
-                    sElement.src = 'https://enchat-online.disqus.com/embed.js';
-                    sElement.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(sElement);
-                })();
+                let disqusLoaded = false;
+                function loadDisqus() {
+                    if (disqusLoaded) return;
+                    disqusLoaded = true;
+                    var disqus_config = function () {
+                        this.page.url = 'https://engspace.org/';
+                        this.page.identifier = 'english-chat-home';
+                    };
+                    var d = document, s = d.createElement('script');
+                    s.src = 'https://enchat-online.disqus.com/embed.js';
+                    s.setAttribute('data-timestamp', +new Date());
+                    (d.head || d.body).appendChild(s);
+                    // Hide the load button after loading
+                    document.getElementById('disqus-load').style.display = 'none';
+                }
+                // Intersection Observer to load Disqus when the section is visible
+                document.addEventListener('DOMContentLoaded', function() {
+                    let options = {
+                        rootMargin: '0px',
+                        threshold: 0.1
+                    };
+                    let observer = new IntersectionObserver((entries, observer) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                loadDisqus();
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, options);
+                    observer.observe(document.getElementById('disqus_thread'));
+                });
             </script>
             <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">Disqus comments here.</a></noscript>
         </div>
