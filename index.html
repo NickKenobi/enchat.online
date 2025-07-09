@@ -18,15 +18,15 @@
         }
         .hero h2, .hero p, .hero a {
             text-shadow:
-                -2px -2px 0 rgba(0, 0, 0, 0.1),
-                 2px -2px 0 rgba(0, 0, 0, 0.1),
-                -2px  2px 0 rgba(0, 0, 0, 0.1),
-                 2px  2px 0 rgba(0, 0, 0, 0.1),
-                 0   -2px 0 rgba(0, 0, 0, 0.1),
-                 0    2px 0 rgba(0, 0, 0, 0.1),
-                -2px  0   0 rgba(0, 0, 0, 0.1),
-                 2px  0   0 rgba(0, 0, 0, 0.1),
-                 2px  2px 4px rgba(0, 0, 0, 0.4);
+                    -2px -2px 0 rgba(0, 0, 0, 0.1),
+                    2px -2px 0 rgba(0, 0, 0, 0.1),
+                    -2px  2px 0 rgba(0, 0, 0, 0.1),
+                    2px  2px 0 rgba(0, 0, 0, 0.1),
+                    0   -2px 0 rgba(0, 0, 0, 0.1),
+                    0    2px 0 rgba(0, 0, 0, 0.1),
+                    -2px  0   0 rgba(0, 0, 0, 0.1),
+                    2px  0   0 rgba(0, 0, 0, 0.1),
+                    2px  2px 4px rgba(0, 0, 0, 0.4);
             color: white;
         }
         .circle {
@@ -70,6 +70,11 @@
                 background-color: #fff;
                 padding: 1rem;
             }
+            /* Make buttons in quote block full-width on mobile */
+            .control-button {
+                width: 100%;
+                box-sizing: border-box;
+            }
         }
         /* Ensure horizontal menu on large screens */
         @media (min-width: 768px) {
@@ -86,133 +91,346 @@
                 padding: 0.5rem 1rem !important;
             }
         }
+
+        .quote-container {
+            text-align: center;
+            padding: 15px; /* Padding inside the box */
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 650px;
+            width: 90%;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box; /* Ensures padding/border are included in width/height */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Aligns items to the start of the container */
+            margin: 10px auto; /* Center the box on the page with some top/bottom margin */
+        }
+        .quote-text-wrapper {
+            flex-grow: 1; /* Allows this area to take up available vertical space */
+            max-height: 100%; /* Limit to the height given by flex-grow:1 relative to its parent */
+            overflow-y: auto; /* Enable vertical scroll if content overflows */
+            padding: 5px 15px; /* Top/bottom padding 5px, left/right padding 15px */
+            margin-bottom: 10px;
+            min-height: 50px; /* Minimum height for text area */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center; /* Center text horizontally */
+        }
+        .quote-text {
+            font-size: 1.1em;
+            font-style: italic;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: normal;
+            word-wrap: break-word;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+        .quote-author {
+            font-size: 0.95em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto; /* Push controls to the bottom */
+            flex-shrink: 0;
+        }
+        .control-button {
+            padding: 8px 18px;
+            font-size: 0.9em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            min-width: 100px;
+        }
+        .control-button:hover {
+            background-color: #0056b3;
+            transform: translateY(-1px);
+        }
+        .control-button:active {
+            transform: translateY(0);
+        }
+        #getNewBatchButton {
+            background-color: #28a745;
+        }
+        #getNewBatchButton:hover {
+            background-color: #218838;
+        }
     </style>
 </head>
 <body class="bg-light">
-    <!-- Header -->
-    <header class="bg-white shadow">
-        <nav class="container container-lg mx-auto px-4 py-3 navbar navbar-expand-md">
-            <div class="d-flex align-items-center w-100">
-                <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
-                    <img src="/img/logo.png" alt="English Chat Logo" class="logo">
-                    English Space
-                </h1>
-                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a href="#home" class="nav-link text-dark">Home</a></li>
-                    <li class="nav-item"><a href="#about" class="nav-link text-dark">About</a></li>
-                    <li class="nav-item"><a href="#disqus_thread" class="nav-link text-dark">Join the Chat</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero py-5 text-center text-white">
-        <div class="container container-lg px-4">
-            <h2 class="fs-1 fw-bold mb-4">Let’s Learn English Together</h2>
-            <p class="fs-5 mb-4">Explore resources, practice skills, and connect with learners to improve your English!</p>
-            <a href="#disqus_thread" class="btn btn-primary px-4 py-2 rounded-pill">Join the Chat</a>
+<!-- Header -->
+<header class="bg-white shadow">
+    <nav class="container container-lg mx-auto px-4 py-3 navbar navbar-expand-md">
+        <div class="d-flex align-items-center w-100">
+            <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
+                <img src="/img/logo.png" alt="English Chat Logo" class="logo">
+                English Space
+            </h1>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
-    </section>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a href="#home" class="nav-link text-dark">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link text-dark">About</a></li>
+                <li class="nav-item"><a href="#disqus_thread" class="nav-link text-dark">Join the Chat</a></li>
+            </ul>
+        </div>
+    </nav>
+</header>
 
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-white">
-        <div class="container container-lg px-4">
-            <h3 class="fs-2 fw-bold text-center mb-5">Why Learn with Us?</h3>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col text-center">
-                    <div class="circle circle-community">
-                        <i class="fas fa-users"></i>
-                    </div>
-                    <h4 class="fs-4 fw-semibold mb-2">Global Community</h4>
-                    <p class="text-muted">Connect with people from different cultures and backgrounds to improve your English.</p>
+<!-- Hero Section -->
+<section id="home" class="hero py-5 sagenv-5 text-center text-white">
+    <div class="container container-lg px-4">
+        <h2 class="fs-1 fw-bold mb-4">Let’s Learn English Together</h2>
+        <p class="fs-5 mb-4">Explore resources, practice skills, and connect with learners to improve your English!</p>
+        <a href="#disqus_thread" class="btn btn-primary px-4 py-2 rounded-pill">Join the Chat</a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-5 bg-white">
+    <div class="container container-lg px-4">
+        <h3 class="fs-2 fw-bold text-center mb-5">Why Learn with Us?</h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col text-center">
+                <div class="circle circle-community">
+                    <i class="fas fa-users"></i>
                 </div>
-                <div class="col text-center">
-                    <div class="circle circle-practice">
-                        <i class="fas fa-comments"></i>
-                    </div>
-                    <h4 class="fs-4 fw-semibold mb-2">Real-Life Practice</h4>
-                    <p class="text-muted">Engage in real conversations to build confidence and fluency.</p>
+                <h4 class="fs-4 fw-semibold mb-2">Global Community</h4>
+                <p class="text-muted">Connect with people from different cultures and backgrounds to improve your English.</p>
+            </div>
+            <div class="col text-center">
+                <div class="circle circle-practice">
+                    <i class="fas fa-comments"></i>
                 </div>
-                <div class="col text-center">
-                    <div class="circle circle-free">
-                        <i class="fas fa-gift"></i>
-                    </div>
-                    <h4 class="fs-4 fw-semibold mb-2">Free to Join</h4>
-                    <p class="text-muted">Learn, practice, and grow – all without paying anything</p>
+                <h4 class="fs-4 fw-semibold mb-2">Real-Life Practice</h4>
+                <p class="text-muted">Engage in real conversations to build confidence and fluency.</p>
+            </div>
+            <div class="col text-center">
+                <div class="circle circle-free">
+                    <i class="fas fa-gift"></i>
                 </div>
+                <h4 class="fs-4 fw-semibold mb-2">Free to Join</h4>
+                <p class="text-muted">Learn, practice, and grow – all without paying anything</p>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Quote Section -->
-    <!--<section id="azquotes" class="py-5 bg-light">-->
-        <div class="container container-lg px-4" style="padding-top:3rem;">
-            <blockquote class="blockquote text-center">
-                <script type="text/javascript" src="//www.azquotes.com/widgets/link/qu_c_t.js"></script>
-                <small><i><a href="https://www.azquotes.com/quote_of_the_day.html" target="_blank">more Quotes</a></i></small>
-            </blockquote>
+<!-- Quote Section -->
+<section id="quotes" class="py-4">
+    <h3 class="fs-2 fw-bold text-center my-3">Explore Our Quote Collection</h3>
+    <div class="quote-container">
+        <div class="quote-text-wrapper">
+            <p class="quote-text" id="quoteText">...</p>
         </div>
-    <!--</section>-->
+        <p class="quote-author" id="quoteAuthor"></p>
+        <div class="controls">
+            <button class="control-button" onclick="showPreviousQuote()">Previous Quote</button>
+            <button class="control-button" id="getNewBatchButton" onclick="fetchQuotes()">Get New Batch</button>
+            <button class="control-button" onclick="showNextQuote()">Next Quote</button>
+        </div>
+        <script>
+            const API_URL = 'https://engspace-org-quotes.hf.space/api/quotes';
 
-    <!-- Disqus Comment Section -->
-    <section id="disqus" class="py-5 bg-light">
-        <div class="container container-lg px-4">
-            <h3 class="fs-2 fw-bold text-center mb-5">Join the Conversation</h3>
-            <p class="text-center mb-4">Use the Disqus comment section below to practice your English. Introduce yourself, ask questions, or discuss your favorite topics!</p>
-            <div id="disqus_thread"></div>
-            <div id="disqus-load" style="text-align: center; padding: 10px;">
-                <button onclick="loadDisqus()" class="btn btn-primary">Load Comments</button>
-            </div>
-            <script>
-                let disqusLoaded = false;
-                function loadDisqus() {
-                    if (disqusLoaded) return;
-                    disqusLoaded = true;
-                    var disqus_config = function () {
-                        this.page.url = 'https://engspace.org/';
-                        this.page.identifier = 'english-chat-home';
-                    };
-                    var d = document, s = d.createElement('script');
-                    s.src = 'https://enchat-online.disqus.com/embed.js';
-                    s.setAttribute('data-timestamp', +new Date());
-                    (d.head || d.body).appendChild(s);
-                    // Hide the load button after loading
-                    document.getElementById('disqus-load').style.display = 'none';
+            let fetchedQuotes = [];
+            let currentQuoteIndex = 0;
+            let apiFetchCompleted = false; // Flag to track if API fetch is done
+            const MIN_DISPLAY_TIME = 10000; // Minimum display time for default quote in milliseconds (10 seconds)
+            let startTime = 0; // To record when the default quote started displaying
+
+            // Quotes for the loading time, in case it is a little too long.
+            // The default quote is switched every 10 seconds during the loading process.
+            const defaultQuotes = [
+                { quote: "All things are difficult before they are easy.", author: "Thomas Fuller" },
+                { quote: "Patience is not simply the ability to wait – it’s how we behave while we’re waiting.", author: "Joyce Meyer" },
+                { quote: "Good things come to those who wait.", author: "English Proverb" },
+                { quote: "Waiting is a sign of true faith.", author: "Unknown" },
+                { quote: "The beginning is the most important part of the work.", author: "Plato" },
+                { quote: "If you are in a hurry, go slowly.", author: "Japanese Proverb" },
+                { quote: "He who masters patience masters everything else.", author: "George Savile" },
+                { quote: "Even the longest journey begins with a single step.", author: "Lao Tzu" },
+                { quote: "Patience is bitter, but its fruit is sweet.", author: "Jean-Jacques Rousseau" },
+                { quote: "During the wait, what you’re waiting for is growing.", author: "Unknown" }
+            ];
+
+            /**
+             * Fetches a new batch of quotes from the API.
+             * Once fetched, it schedules the display of the first quote from the new batch
+             * respecting the minimum display time for default quotes.
+             */
+            async function fetchQuotes() {
+                apiFetchCompleted = false; // Reset flag for new fetch
+                try {
+                    const response = await fetch(API_URL);
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    const data = await response.json();
+
+                    if (data && data.quotes && data.quotes.length > 0) {
+                        fetchedQuotes = data.quotes; // Store all quotes without filtering
+                        currentQuoteIndex = 0;
+                    } else {
+                        throw new Error("No quotes received from API.");
+                    }
+
+                } catch (error) {
+                    console.error("Error fetching quotes:", error);
+                    if (fetchedQuotes.length === 0) {
+                        document.getElementById('quoteText').innerText = "Failed to load quotes. Please try again later.";
+                        document.getElementById('quoteAuthor').innerText = "";
+                    }
+                } finally {
+                    apiFetchCompleted = true; // Mark fetch as completed
+                    checkAndDisplayFetchedQuote();
                 }
-                // Intersection Observer to load Disqus when the section is visible
-                document.addEventListener('DOMContentLoaded', function() {
-                    let options = {
-                        rootMargin: '0px',
-                        threshold: 0.1
-                    };
-                    let observer = new IntersectionObserver((entries, observer) => {
-                        entries.forEach(entry => {
-                            if (entry.isIntersecting) {
-                                loadDisqus();
-                                observer.unobserve(entry.target);
-                            }
-                        });
-                    }, options);
-                    observer.observe(document.getElementById('disqus_thread'));
-                });
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">Disqus comments here.</a></noscript>
-        </div>
-    </section>
+            }
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-4">
-        <div class="container container-lg px-4 text-center">
-            © 2025 English Chat. All rights reserved.
-        </div>
-    </footer>
+            /**
+             * Displays the quote at the currentQuoteIndex.
+             */
+            function showCurrentQuote() {
+                const quoteTextElement = document.getElementById('quoteText');
+                const quoteAuthorElement = document.getElementById('quoteAuthor');
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+                if (fetchedQuotes.length > 0) {
+                    const quote = fetchedQuotes[currentQuoteIndex];
+                    quoteTextElement.innerText = `"${quote.quote}"`;
+                    quoteAuthorElement.innerText = `- ${quote.author}`;
+                } else {
+                    quoteTextElement.innerText = "No quotes available. Click 'Get New Batch'.";
+                    quoteAuthorElement.innerText = "";
+                }
+            }
+
+            /**
+             * Advances to the next quote in the carousel. If at the end, cycles back to the start.
+             */
+            function showNextQuote() {
+                if (fetchedQuotes.length > 0) {
+                    currentQuoteIndex = (currentQuoteIndex + 1) % fetchedQuotes.length;
+                    showCurrentQuote();
+                } else {
+                    // If API quotes not loaded yet, display a random default quote
+                    if (defaultQuotes.length > 0) {
+                        displayRandomDefaultQuote();
+                    } else {
+                        // Fallback to fetching if no default quotes are defined
+                        fetchQuotes();
+                    }
+                }
+            }
+
+            /**
+             * Goes back to the previous quote in the carousel. If at the beginning, cycles to the end.
+             */
+            function showPreviousQuote() {
+                if (fetchedQuotes.length > 0) {
+                    currentQuoteIndex = (currentQuoteIndex - 1 + fetchedQuotes.length) % fetchedQuotes.length;
+                    showCurrentQuote();
+                } else {
+                    // If API quotes not loaded yet, display a random default quote
+                    if (defaultQuotes.length > 0) {
+                        displayRandomDefaultQuote();
+                    } else {
+                        // Fallback to fetching if no default quotes are defined
+                        fetchQuotes();
+                    }
+                }
+            }
+
+            /**
+             * Displays a random quote from the predefined defaultQuotes list.
+             */
+            function displayRandomDefaultQuote() {
+                if (defaultQuotes.length > 0) {
+                    const randomIndex = Math.floor(Math.random() * defaultQuotes.length);
+                    const quote = defaultQuotes[randomIndex];
+                    document.getElementById('quoteText').innerText = `"${quote.quote}"`;
+                    document.getElementById('quoteAuthor').innerText = `- ${quote.author}`;
+                    startTime = performance.now(); // Record the start time for the default quote display
+                }
+            }
+
+            /**
+             * Checks if the minimum display time for the default quote has passed.
+             * If yes and API fetch is complete, displays the first fetched quote.
+             */
+            function checkAndDisplayFetchedQuote() {
+                const elapsedTime = performance.now() - startTime;
+                if (apiFetchCompleted && elapsedTime >= MIN_DISPLAY_TIME) {
+                    showCurrentQuote(); // Display the first quote from API
+                } else if (apiFetchCompleted) {
+                    // If API fetch is complete but not enough time has passed, wait.
+                    const remainingTime = MIN_DISPLAY_TIME - elapsedTime;
+                    setTimeout(showCurrentQuote, remainingTime);
+                }
+            }
+
+            // Initialization on page load
+            document.addEventListener('DOMContentLoaded', function() {
+                displayRandomDefaultQuote(); // Show a default quote instantly
+                fetchQuotes(); // Start fetching API quotes in the background
+            });
+        </script>
+    </div>
+</section>
+
+<!-- Disqus Comment Section -->
+<section id="disqus" class="py-3 bg-light">
+    <div class="container container-lg px-4">
+        <h3 class="fs-2 fw-bold text-center mb-5">Join the Conversation</h3>
+        <p class="text-center mb-4">Use the Disqus comment section below to practice your English. Introduce yourself, ask questions, or discuss your favorite topics!</p>
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+             *  Disqus configuration
+             */
+            var disqus_config = function () {
+                this.page.url = 'https://engspace.org/';
+                this.page.identifier = 'english-chat-home';
+            };
+
+            (function() {
+                var d = document, sElement = d.createElement('script');
+                sElement.src = 'https://enchat-online.disqus.com/embed.js';
+                sElement.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(sElement);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">Disqus comments here.</a></noscript>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-primary text-white py-4">
+    <div class="container container-lg px-4 text-center">
+        © 2025 English Space. All rights reserved.
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>
