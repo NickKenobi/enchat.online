@@ -18,15 +18,15 @@
         }
         .hero h2, .hero p, .hero a {
             text-shadow:
-                -2px -2px 0 rgba(0, 0, 0, 0.1),
-                2px -2px 0 rgba(0, 0, 0, 0.1),
-                -2px  2px 0 rgba(0, 0, 0, 0.1),
-                2px  2px 0 rgba(0, 0, 0, 0.1),
-                0   -2px 0 rgba(0, 0, 0, 0.1),
-                0    2px 0 rgba(0, 0, 0, 0.1),
-                -2px  0   0 rgba(0, 0, 0, 0.1),
-                2px  0   0 rgba(0, 0, 0, 0.1),
-                2px  2px 4px rgba(0, 0, 0, 0.4);
+                    -2px -2px 0 rgba(0, 0, 0, 0.1),
+                    2px -2px 0 rgba(0, 0, 0, 0.1),
+                    -2px  2px 0 rgba(0, 0, 0, 0.1),
+                    2px  2px 0 rgba(0, 0, 0, 0.1),
+                    0   -2px 0 rgba(0, 0, 0, 0.1),
+                    0    2px 0 rgba(0, 0, 0, 0.1),
+                    -2px  0   0 rgba(0, 0, 0, 0.1),
+                    2px  0   0 rgba(0, 0, 0, 0.1),
+                    2px  2px 4px rgba(0, 0, 0, 0.4);
             color: white;
         }
         .circle {
@@ -39,19 +39,18 @@
             justify-content: center;
         }
         .circle-community {
-            background-color: #007bff; /* Blue for Community */
+            background-color: #007bff;
         }
         .circle-practice {
-            background-color: #28a745; /* Green for Practice */
+            background-color: #28a745;
         }
         .circle-free {
-            background-color: #fd7e14; /* Orange for Free */
+            background-color: #fd7e14;
         }
         .circle i {
             color: white;
             font-size: 2.5rem;
         }
-        /* Disqus Error Block */
         #error {
             text-align: center;
         }
@@ -61,7 +60,6 @@
             margin-right: 10px;
             vertical-align: middle;
         }
-        /* Ensure hamburger menu is visible on mobile */
         @media (max-width: 767px) {
             .navbar-nav {
                 text-align: center;
@@ -70,13 +68,15 @@
                 background-color: #fff;
                 padding: 1rem;
             }
-            /* Make buttons in quote block full-width on mobile */
             .control-button {
-                width: 100%;
-                box-sizing: border-box;
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
-        /* Ensure horizontal menu on large screens */
         @media (min-width: 768px) {
             .navbar-nav {
                 flex-direction: row !important;
@@ -91,34 +91,89 @@
                 padding: 0.5rem 1rem !important;
             }
         }
-
         .quote-container {
             text-align: center;
-            padding: 15px; /* Padding inside the box */
+            padding: 15px 20px;
             border: 1px solid #ddd;
             border-radius: 10px;
             max-width: 650px;
             width: 90%;
             background-color: #ffffff;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            box-sizing: border-box; /* Ensures padding/border are included in width/height */
+            box-sizing: border-box;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Aligns items to the start of the container */
-            margin: 10px auto; /* Center the box on the page with some top/bottom margin */
+            justify-content: flex-start;
+            margin: 10px auto;
+            position: relative;
+            min-height: 200px;
         }
-        .quote-text-wrapper {
-            flex-grow: 1; /* Allows this area to take up available vertical space */
-            max-height: 100%; /* Limit to the height given by flex-grow:1 relative to its parent */
-            overflow-y: auto; /* Enable vertical scroll if content overflows */
-            padding: 5px 15px; /* Top/bottom padding 5px, left/right padding 15px */
-            margin-bottom: 10px;
-            min-height: 50px; /* Minimum height for text area */
+
+        #getNewBatchButton {
+            background-color: #28a745;
+            width: auto;
+            padding: 8px 18px;
+            font-size: 0.9em;
+            position: relative;
+            margin: 0 auto 15px;
+            border-radius: 24px;
+        }
+
+        #getNewBatchButton:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        #getNewBatchButton:active {
+            transform: scale(1);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .control-button {
+            padding: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            width: 48px;
+            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-align: center; /* Center text horizontally */
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
+
+        .control-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
+        }
+
+        .control-button:active {
+            transform: scale(1);
+        }
+
+        .quote-text-wrapper {
+            flex-grow: 1;
+            max-height: 100%;
+            overflow-y: auto;
+            padding: 5px 20px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
         .quote-text {
             font-size: 1.2em;
             font-style: italic;
@@ -132,6 +187,7 @@
             flex-shrink: 0;
             flex-grow: 0;
         }
+
         .quote-author {
             font-size: 0.95em;
             font-weight: bold;
@@ -139,39 +195,7 @@
             margin-bottom: 15px;
             flex-shrink: 0;
         }
-        .controls {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: auto; /* Push controls to the bottom */
-            flex-shrink: 0;
-        }
-        .control-button {
-            padding: 8px 18px;
-            font-size: 0.9em;
-            cursor: pointer;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease, transform 0.1s ease;
-            min-width: 100px;
-        }
-        .control-button:hover {
-            background-color: #0056b3;
-            transform: translateY(-1px);
-        }
-        .control-button:active {
-            transform: translateY(0);
-        }
-        #getNewBatchButton {
-            background-color: #28a745;
-        }
-        #getNewBatchButton:hover {
-            background-color: #218838;
-        }
+
     </style>
 </head>
 <body class="bg-light">
@@ -180,7 +204,7 @@
     <nav class="container container-lg mx-auto px-4 py-3 navbar navbar-expand-md">
         <div class="d-flex align-items-center w-100">
             <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
-                <img src="/img/logo.png" alt="English Chat Logo" class="logo">
+                <img src="/img/Logo.png" alt="English Chat Logo" class="logo">
                 English Space
             </h1>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -240,159 +264,75 @@
 <section id="quotes" class="py-4">
     <h3 class="fs-2 fw-bold text-center my-3">Explore Our Quote Collection</h3>
     <div class="quote-container">
+        <div class="controls">
+            <button class="control-button" id="prevQuoteButton" onclick="showPreviousQuote()"><i class="fas fa-arrow-left"></i></button>
+            <button class="control-button" id="getNewBatchButton" onclick="fetchQuotes()">Next Set of Quotes</button>
+            <button class="control-button" id="nextQuoteButton" onclick="showNextQuote()"><i class="fas fa-arrow-right"></i></button>
+        </div>
         <div class="quote-text-wrapper">
-            <p class="quote-text" id="quoteText">...</p>
+            <p class="quote-text" id="quoteText">Loading quotes...</p>
         </div>
         <p class="quote-author" id="quoteAuthor"></p>
-        <div class="controls">
-            <button class="control-button" onclick="showPreviousQuote()">Previous Quote</button>
-            <button class="control-button" id="getNewBatchButton" onclick="fetchQuotes()">Get New Batch</button>
-            <button class="control-button" onclick="showNextQuote()">Next Quote</button>
-        </div>
         <script>
             const API_URL = 'https://engspace-org-quotes.hf.space/api/quotes';
 
             let fetchedQuotes = [];
             let currentQuoteIndex = 0;
-            let apiFetchCompleted = false; // Flag to track if API fetch is done
-            const MIN_DISPLAY_TIME = 10000; // Minimum display time for default quote in milliseconds (10 seconds)
-            let startTime = 0; // To record when the default quote started displaying
 
-            // Quotes for the loading time, in case it is a little too long.
-            // The default quote is switched every 10 seconds during the loading process.
-            const defaultQuotes = [
-                { quote: "All things are difficult before they are easy.", author: "Thomas Fuller" },
-                { quote: "Patience is not simply the ability to wait – it’s how we behave while we’re waiting.", author: "Joyce Meyer" },
-                { quote: "Good things come to those who wait.", author: "English Proverb" },
-                { quote: "Waiting is a sign of true faith.", author: "Unknown" },
-                { quote: "The beginning is the most important part of the work.", author: "Plato" },
-                { quote: "If you are in a hurry, go slowly.", author: "Japanese Proverb" },
-                { quote: "He who masters patience masters everything else.", author: "George Savile" },
-                { quote: "Even the longest journey begins with a single step.", author: "Lao Tzu" },
-                { quote: "Patience is bitter, but its fruit is sweet.", author: "Jean-Jacques Rousseau" },
-                { quote: "During the wait, what you’re waiting for is growing.", author: "Unknown" }
-            ];
-
-            /**
-             * Fetches a new batch of quotes from the API.
-             * Once fetched, it schedules the display of the first quote from the new batch
-             * respecting the minimum display time for default quotes.
-             */
             async function fetchQuotes() {
-                apiFetchCompleted = false; // Reset flag for new fetch
                 try {
                     const response = await fetch(API_URL);
-
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
-
                     const data = await response.json();
-
                     if (data && data.quotes && data.quotes.length > 0) {
-                        fetchedQuotes = data.quotes; // Store all quotes without filtering
+                        fetchedQuotes = data.quotes;
                         currentQuoteIndex = 0;
+                        showCurrentQuote();
                     } else {
                         throw new Error("No quotes received from API.");
                     }
-
                 } catch (error) {
                     console.error("Error fetching quotes:", error);
-                    if (fetchedQuotes.length === 0) {
-                        document.getElementById('quoteText').innerText = "Failed to load quotes. Please try again later.";
-                        document.getElementById('quoteAuthor').innerText = "";
-                    }
-                } finally {
-                    apiFetchCompleted = true; // Mark fetch as completed
-                    checkAndDisplayFetchedQuote();
+                    document.getElementById('quoteText').innerText = "Failed to load quotes. Please try again later.";
+                    document.getElementById('quoteAuthor').innerText = "";
                 }
             }
 
-            /**
-             * Displays the quote at the currentQuoteIndex.
-             */
             function showCurrentQuote() {
                 const quoteTextElement = document.getElementById('quoteText');
                 const quoteAuthorElement = document.getElementById('quoteAuthor');
-
                 if (fetchedQuotes.length > 0) {
                     const quote = fetchedQuotes[currentQuoteIndex];
                     quoteTextElement.innerText = `"${quote.quote}"`;
                     quoteAuthorElement.innerText = `- ${quote.author}`;
                 } else {
-                    quoteTextElement.innerText = "No quotes available. Click 'Get New Batch'.";
+                    quoteTextElement.innerText = "No quotes available. Click 'Next Set of Quotes'.";
                     quoteAuthorElement.innerText = "";
                 }
             }
 
-            /**
-             * Advances to the next quote in the carousel. If at the end, cycles back to the start.
-             */
             function showNextQuote() {
                 if (fetchedQuotes.length > 0) {
                     currentQuoteIndex = (currentQuoteIndex + 1) % fetchedQuotes.length;
                     showCurrentQuote();
                 } else {
-                    // If API quotes not loaded yet, display a random default quote
-                    if (defaultQuotes.length > 0) {
-                        displayRandomDefaultQuote();
-                    } else {
-                        // Fallback to fetching if no default quotes are defined
-                        fetchQuotes();
-                    }
+                    fetchQuotes();
                 }
             }
 
-            /**
-             * Goes back to the previous quote in the carousel. If at the beginning, cycles to the end.
-             */
             function showPreviousQuote() {
                 if (fetchedQuotes.length > 0) {
                     currentQuoteIndex = (currentQuoteIndex - 1 + fetchedQuotes.length) % fetchedQuotes.length;
                     showCurrentQuote();
                 } else {
-                    // If API quotes not loaded yet, display a random default quote
-                    if (defaultQuotes.length > 0) {
-                        displayRandomDefaultQuote();
-                    } else {
-                        // Fallback to fetching if no default quotes are defined
-                        fetchQuotes();
-                    }
+                    fetchQuotes();
                 }
             }
 
-            /**
-             * Displays a random quote from the predefined defaultQuotes list.
-             */
-            function displayRandomDefaultQuote() {
-                if (defaultQuotes.length > 0) {
-                    const randomIndex = Math.floor(Math.random() * defaultQuotes.length);
-                    const quote = defaultQuotes[randomIndex];
-                    document.getElementById('quoteText').innerText = `"${quote.quote}"`;
-                    document.getElementById('quoteAuthor').innerText = `- ${quote.author}`;
-                    startTime = performance.now(); // Record the start time for the default quote display
-                }
-            }
-
-            /**
-             * Checks if the minimum display time for the default quote has passed.
-             * If yes and API fetch is complete, displays the first fetched quote.
-             */
-            function checkAndDisplayFetchedQuote() {
-                const elapsedTime = performance.now() - startTime;
-                if (apiFetchCompleted && elapsedTime >= MIN_DISPLAY_TIME) {
-                    showCurrentQuote(); // Display the first quote from API
-                } else if (apiFetchCompleted) {
-                    // If API fetch is complete but not enough time has passed, wait.
-                    const remainingTime = MIN_DISPLAY_TIME - elapsedTime;
-                    setTimeout(showCurrentQuote, remainingTime);
-                }
-            }
-
-            // Initialization on page load
             document.addEventListener('DOMContentLoaded', function() {
-                displayRandomDefaultQuote(); // Show a default quote instantly
-                fetchQuotes(); // Start fetching API quotes in the background
+                fetchQuotes();
             });
         </script>
     </div>
@@ -405,14 +345,10 @@
         <p class="text-center mb-4">Use the Disqus comment section below to practice your English. Introduce yourself, ask questions, or discuss your favorite topics!</p>
         <div id="disqus_thread"></div>
         <script>
-            /**
-             *  Disqus configuration
-             */
             var disqus_config = function () {
                 this.page.url = 'https://engspace.org/';
                 this.page.identifier = 'english-chat-home';
             };
-
             (function() {
                 var d = document, sElement = d.createElement('script');
                 sElement.src = 'https://enchat-online.disqus.com/embed.js';
