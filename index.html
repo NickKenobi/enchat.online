@@ -91,7 +91,7 @@
                 padding: 0.5rem 1rem !important;
             }
         }
-        .quote-container, .dictionary-container {
+        .quote-container, .dictionary-container, .idiom-container {
             text-align: center;
             padding: 15px 20px;
             border: 1px solid #ddd;
@@ -111,7 +111,7 @@
         .dictionary-container {
             min-height: 0;
         }
-        #getNewBatchButton, #search-dictionary {
+        #getNewBatchButton, #search-dictionary, #getNewIdiomBatchButton {
             background-color: #28a745;
             width: auto;
             padding: 8px 18px;
@@ -120,11 +120,11 @@
             margin: 0 auto 15px;
             border-radius: 24px;
         }
-        #getNewBatchButton:hover, #search-dictionary:hover {
+        #getNewBatchButton:hover, #search-dictionary:hover, #getNewIdiomBatchButton:hover {
             background-color: #218838;
             transform: scale(1.1);
         }
-        #getNewBatchButton:active, #search-dictionary:active {
+        #getNewBatchButton:active, #search-dictionary:active, #getNewIdiomBatchButton:active {
             transform: scale(1);
         }
         .controls {
@@ -156,7 +156,7 @@
         .control-button:active {
             transform: scale(1);
         }
-        .quote-text-wrapper {
+        .quote-text-wrapper, .idiom-text-wrapper {
             flex-grow: 1;
             max-height: 100%;
             overflow-y: auto;
@@ -168,7 +168,7 @@
             justify-content: center;
             text-align: center;
         }
-        .quote-text {
+        .quote-text, .idiom-text {
             font-size: 1.2em;
             font-style: italic;
             line-height: 1.4;
@@ -181,12 +181,15 @@
             flex-shrink: 0;
             flex-grow: 0;
         }
-        .quote-author {
+        .quote-author, .idiom-definition, .idiom-example {
             font-size: 0.95em;
             font-weight: bold;
             color: #555;
             margin-bottom: 15px;
             flex-shrink: 0;
+        }
+        .idiom-example {
+            font-style: italic;
         }
         .dictionary-input {
             padding: 8px;
@@ -229,13 +232,11 @@
             color: #007bff;
             transition: transform 0.2s ease;
         }
-
         .audio-button:hover {
             transform: scale(1.2);
         }
-
         .audio-button i {
-            pointer-events: none; /* Prevent icon from blocking button click */
+            pointer-events: none;
         }
     </style>
 </head>
@@ -254,8 +255,18 @@
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a href="#home" class="nav-link text-dark">Home</a></li>
-                <li class="nav-item"><a href="#about" class="nav-link text-dark">About</a></li>
+<!--                <li class="nav-item"><a href="#home" class="nav-link text-dark">Home</a></li>-->
+<!--                <li class="nav-item"><a href="#about" class="nav-link text-dark">About</a></li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Resources
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                        <li><a class="dropdown-item" href="#dictionary">English Dictionary</a></li>
+                        <li><a class="dropdown-item" href="#quotes">English Quotes</a></li>
+                        <li><a class="dropdown-item" href="#idioms">English Idioms</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item"><a href="#disqus_thread" class="nav-link text-dark">Join the Chat</a></li>
             </ul>
         </div>
@@ -335,7 +346,6 @@
                 const phonetic = wordData.phonetics.find(p => p.text) || { text: 'N/A' };
                 const audio = wordData.phonetics.find(p => p.audio) || { audio: '' };
 
-                // Build HTML for all meanings, definitions, and examples
                 let meaningsHTML = '';
                 wordData.meanings.forEach(meaning => {
                     const partOfSpeech = meaning.partOfSpeech || 'N/A';
@@ -417,13 +427,13 @@
         </div>
         <p class="quote-author" id="quoteAuthor"></p>
         <script>
-            const API_URL = 'https://engspace-org-quotes.hf.space/api/quotes';
+            const QUOTE_API_URL = 'https://engspace-org-quotes.hf.space/api/quotes';
             let fetchedQuotes = [];
             let currentQuoteIndex = 0;
 
             async function fetchQuotes() {
                 try {
-                    const response = await fetch(API_URL);
+                    const response = await fetch(QUOTE_API_URL);
                     if (!response.ok) {
                         throw new Error(`HTTP error! Status: ${response.status}`);
                     }
@@ -475,6 +485,90 @@
 
             document.addEventListener('DOMContentLoaded', function() {
                 fetchQuotes();
+            });
+        </script>
+    </div>
+</section>
+
+<!-- Idioms Section -->
+<section id="idioms" class="py-4">
+    <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Explore Our Idiom Collection</h3>
+    <div class="idiom-container">
+        <div class="controls">
+            <button class="control-button" id="prevIdiomButton" onclick="showPreviousIdiom()"><i class="fas fa-arrow-left"></i></button>
+            <button class="control-button" id="getNewIdiomBatchButton" onclick="fetchIdioms()">Next Set of Idioms</button>
+            <button class="control-button" id="nextIdiomButton" onclick="showNextIdiom()"><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <div class="idiom-text-wrapper">
+            <p class="idiom-text" id="idiomText">Loading idioms...</p>
+        </div>
+        <p class="idiom-definition" id="idiomDefinition"></p>
+        <p class="idiom-example" id="idiomExample"></p>
+        <script>
+            const IDIOM_API_URL = 'https://engspace-org-idioms.hf.space/api/idioms';
+            let fetchedIdioms = [];
+            let currentIdiomIndex = 0;
+
+            async function fetchIdioms() {
+                try {
+                    const response = await fetch(IDIOM_API_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    console.log('API Response:', data);
+
+                    if (Array.isArray(data) && data.length > 0) {
+                        fetchedIdioms = data;
+                        currentIdiomIndex = 0;
+                        showCurrentIdiom();
+                    } else {
+                        throw new Error("No idioms received from API or unexpected format.");
+                    }
+                } catch (error) {
+                    console.error("Error fetching idioms:", error);
+                    document.getElementById('idiomText').innerText = "Failed to load idioms. Please try again later.";
+                    document.getElementById('idiomDefinition').innerText = "";
+                    document.getElementById('idiomExample').innerText = "";
+                }
+            }
+
+            function showCurrentIdiom() {
+                const idiomTextElement = document.getElementById('idiomText');
+                const idiomDefinitionElement = document.getElementById('idiomDefinition');
+                const idiomExampleElement = document.getElementById('idiomExample');
+                if (fetchedIdioms.length > 0) {
+                    const idiom = fetchedIdioms[currentIdiomIndex];
+                    idiomTextElement.innerText = `"${idiom.idiom || 'N/A'}"`;
+                    idiomDefinitionElement.innerText = `Definition: ${idiom.definition || 'N/A'}`;
+                    idiomExampleElement.innerText = `Example: ${idiom.example || 'N/A'}`;
+                } else {
+                    idiomTextElement.innerText = "No idioms available. Click 'Next Set of Idioms'.";
+                    idiomDefinitionElement.innerText = "";
+                    idiomExampleElement.innerText = "";
+                }
+            }
+
+            function showNextIdiom() {
+                if (fetchedIdioms.length > 0) {
+                    currentIdiomIndex = (currentIdiomIndex + 1) % fetchedIdioms.length;
+                    showCurrentIdiom();
+                } else {
+                    fetchIdioms();
+                }
+            }
+
+            function showPreviousIdiom() {
+                if (fetchedIdioms.length > 0) {
+                    currentIdiomIndex = (currentIdiomIndex - 1 + fetchedIdioms.length) % fetchedIdioms.length;
+                    showCurrentIdiom();
+                } else {
+                    fetchIdioms();
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function() {
+                fetchIdioms();
             });
         </script>
     </div>
