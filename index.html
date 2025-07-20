@@ -414,7 +414,7 @@
                         return;
                     }
                     console.log('Sending reCAPTCHA token:', recaptchaResponse); // Debug token
-                    const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g-recaptcha-response=${encodeURIComponent(recaptchaResponse)}`);
+                    const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g_recaptcha_response=${encodeURIComponent(recaptchaResponse)}`);
                     if (!response.ok) {
                         const errorData = await response.json();
                         throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
