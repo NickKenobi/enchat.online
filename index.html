@@ -391,8 +391,14 @@
                 <option value="15">15 Questions</option>
                 <option value="20">20 Questions</option>
             </select>
-            <div class="g-recaptcha mb-2 mb-md-0" data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi" data-callback="onRecaptchaSuccess"></div>
             <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()" disabled>Start Quiz</button>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="g-recaptcha"
+                 data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
+                 data-callback="onRecaptchaSuccess">
+            </div>
         </div>
 
         <div class="quiz-text-wrapper">
