@@ -377,8 +377,8 @@
                 <option value="15">15 Questions</option>
                 <option value="20">20 Questions</option>
             </select>
-            <div class="g-recaptcha" data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"></div>
-            <button class="control-button" id="fetchQuizButton" onclick="fetchQuiz()">Start Quiz</button>
+            <div class="g-recaptcha" data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi" data-callback="onRecaptchaSuccess"></div>
+            <button class="control-button" id="fetchQuizButton" onclick="fetchQuiz()" disabled>Start Quiz</button>
         </div>
         <div class="quiz-text-wrapper">
             <p class="quiz-question" id="quizQuestion">Click 'Start Quiz' to begin.</p>
@@ -395,6 +395,11 @@
             let currentQuestionIndex = 0;
             let selectedAnswer = null;
 
+            // Enable Start Quiz button when reCAPTCHA is completed
+            function onRecaptchaSuccess(token) {
+                document.getElementById('fetchQuizButton').disabled = false;
+            }
+
             async function fetchQuiz() {
                 try {
                     const level = document.getElementById('quiz-level').value;
@@ -403,11 +408,12 @@
                     if (!recaptchaResponse) {
                         document.getElementById('quizQuestion').innerText = "Please complete the reCAPTCHA.";
                         document.getElementById('quizOptions').innerHTML = '';
-                        document.getElementById('quizResult').innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA.</p>';
+                        document.getElementById('quizResult').innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA to start the quiz.</p>';
                         document.getElementById('quizResult').style.display = 'block';
                         document.getElementById('quizNavigation').style.display = 'none';
                         return;
                     }
+                    console.log('Sending reCAPTCHA token:', recaptchaResponse); // Debug token
                     const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g-recaptcha-response=${encodeURIComponent(recaptchaResponse)}`);
                     if (!response.ok) {
                         const errorData = await response.json();
@@ -418,12 +424,17 @@
                     selectedAnswer = null;
                     showCurrentQuestion();
                     document.getElementById('quizNavigation').style.display = 'flex';
+                    document.getElementById('fetchQuizButton').disabled = true;
                     grecaptcha.reset();
                 } catch (error) {
                     console.error("Error fetching quiz:", error);
-                    document.getElementById('quizQuestion').innerText = "Failed to load quiz. Please try again later.";
+                    let errorMessage = "Failed to load quiz. Please try again later.";
+                    if (error.message.includes("reCAPTCHA")) {
+                        errorMessage = "reCAPTCHA verification failed. Please try again.";
+                    }
+                    document.getElementById('quizQuestion').innerText = "Failed to load quiz.";
                     document.getElementById('quizOptions').innerHTML = '';
-                    document.getElementById('quizResult').innerHTML = `<p class="quiz-error">Error: ${error.message}</p>`;
+                    document.getElementById('quizResult').innerHTML = `<p class="quiz-error">${errorMessage}</p>`;
                     document.getElementById('quizResult').style.display = 'block';
                     document.getElementById('quizNavigation').style.display = 'none';
                 }
