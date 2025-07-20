@@ -284,6 +284,20 @@
             gap: 15px;
             margin: 15px 0;
         }
+        .quiz-text-wrapper {
+            overflow-x: hidden; /* Prevent horizontal scrollbar */
+            overflow-y: auto;   /* Allow vertical scroll if needed */
+            max-width: 100%;    /* Prevent growing wider than parent */
+            padding: 5px 20px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            display: flex;
+            flex-direction: column; /* Ensure elements stack vertically */
+            align-items: center;    /* Center items horizontally */
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
         .g-recaptcha {
             display: inline-block;
             margin-bottom: 15px;
