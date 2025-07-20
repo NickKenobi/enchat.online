@@ -379,31 +379,37 @@
 <section id="quiz" class="py-4">
     <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Test Your Grammar Skills</h3>
     <div class="quiz-container">
-        <div class="quiz-controls">
-            <select id="quiz-level" class="quiz-select">
+        <div class="quiz-controls flex-column flex-md-row align-items-center justify-content-center gap-3">
+            <select id="quiz-level" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
                 <option value="A">Beginner (A1-A2)</option>
                 <option value="B" selected>Intermediate (B1-B2)</option>
                 <option value="C">Advanced (C1-C2)</option>
             </select>
-            <select id="quiz-num-questions" class="quiz-select">
+            <select id="quiz-num-questions" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
                 <option value="5">5 Questions</option>
                 <option value="10">10 Questions</option>
                 <option value="15">15 Questions</option>
                 <option value="20">20 Questions</option>
             </select>
-            <div class="g-recaptcha" data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi" data-callback="onRecaptchaSuccess"></div>
-            <button class="control-button" id="fetchQuizButton" onclick="fetchQuiz()" disabled>Start Quiz</button>
+            <div class="g-recaptcha mb-2 mb-md-0" data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi" data-callback="onRecaptchaSuccess"></div>
+            <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()" disabled>Start Quiz</button>
         </div>
+
         <div class="quiz-text-wrapper">
             <p class="quiz-question" id="quizQuestion">Click 'Start Quiz' to begin.</p>
             <div class="loading-spinner" id="quizLoadingSpinner"></div>
         </div>
         <div class="quiz-options" id="quizOptions"></div>
         <div class="quiz-result" id="quizResult"></div>
-        <div class="quiz-controls" id="quizNavigation" style="display: none;">
-            <button class="control-button submit-button" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check"></i></button>
-            <button class="control-button" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;"><i class="fas fa-arrow-right"></i></button>
+        <div class="quiz-controls flex-column flex-md-row justify-content-center gap-3 mt-3" id="quizNavigation" style="display: none;">
+            <button class="control-button btn btn-success w-100 w-md-auto" id="submitAnswerButton" onclick="submitAnswer()">
+                <i class="fas fa-check"></i> Submit
+            </button>
+            <button class="control-button btn btn-secondary w-100 w-md-auto" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;">
+                <i class="fas fa-arrow-right"></i> Next
+            </button>
         </div>
+
         <script>
             const QUIZ_API_URL = 'https://redlog20201-grammar-quiz.hf.space/api/grammar-quiz';
             let quizQuestions = [];
