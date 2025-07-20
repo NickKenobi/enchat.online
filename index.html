@@ -407,13 +407,9 @@
         </div>
         <div class="quiz-options" id="quizOptions"></div>
         <div class="quiz-result" id="quizResult"></div>
-        <div class="quiz-controls flex-column flex-md-row justify-content-center gap-3 mt-3" id="quizNavigation" style="display: none;">
-            <button class="control-button btn btn-success w-100 w-md-auto" id="submitAnswerButton" onclick="submitAnswer()">
-                <i class="fas fa-check"></i> Submit
-            </button>
-            <button class="control-button btn btn-secondary w-100 w-md-auto" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;">
-                <i class="fas fa-arrow-right"></i> Next
-            </button>
+        <div class="quiz-controls" id="quizNavigation" style="display: none;">
+            <button class="control-button submit-button" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check"></i></button>
+            <button class="control-button" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;"><i class="fas fa-arrow-right"></i></button>
         </div>
 
         <script>
