@@ -157,17 +157,17 @@
         .control-button:active {
             transform: scale(1);
         }
+        .submit-button, .next-button, .results-button {
+            width: auto;
+            padding: 8px 18px;
+            border-radius: 24px;
+            font-size: 0.9em;
+        }
         .submit-button {
             background-color: #28a745;
         }
         .submit-button:hover {
             background-color: #218838;
-        }
-        .submit-button, .next-button {
-            width: auto;
-            padding: 8px 18px;
-            border-radius: 24px;
-            font-size: 0.9em;
         }
         .submit-button i, .next-button i {
             margin-right: 5px;
@@ -428,9 +428,9 @@
         <div class="quiz-options" id="quizOptions"></div>
         <div class="quiz-result" id="quizResult"></div>
         <div class="quiz-controls" id="quizNavigation" style="display: none;">
-            <button class="control-button submit-button btn btn-success" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check me-2"></i> Submit</button>
-            <button class="control-button next-button btn btn-primary" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;">Next <i class="fas fa-arrow-right me-2"></i></button>
-            <button class="control-button btn btn-primary" id="showResultsButton" onclick="showResults()" style="display: none;">Show Results</button>
+            <button class="control-button submit-button btn btn-success" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check me-2"></i>Submit</button>
+            <button class="control-button next-button btn btn-primary" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;">Next<i class="fas fa-arrow-right mx-1"></i></button>
+            <button class="control-button results-button btn btn-primary" id="showResultsButton" onclick="showResults()" style="display: none;"><i class="fas fa-list-check mx-1"></i>Show Results</button>
         </div>
         <script>
             const QUIZ_API_URL = 'https://redlog20201-grammar-quiz.hf.space/api/grammar-quiz';
