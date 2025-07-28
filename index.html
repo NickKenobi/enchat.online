@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Learn English Space</title>
@@ -9,895 +9,904 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous">
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <style>
-      body {
-        font-family: 'Arial', sans-serif;
-      }
-      .hero {
-        background-image: url('/img/banner.jpg');
-        background-size: cover;
-        background-position: center;
-      }
-      .hero h2, .hero p, .hero a {
-        text-shadow:
-          -2px -2px 0 rgba(0, 0, 0, 0.1),
-          2px -2px 0 rgba(0, 0, 0, 0.1),
-          -2px 2px 0 rgba(0, 0, 0, 0.1),
-          2px 2px 0 rgba(0, 0, 0, 0.1),
-          0 -2px 0 rgba(0, 0, 0, 0.1),
-          0 2px 0 rgba(0, 0, 0, 0.1),
-          -2px 0 0 rgba(0, 0, 0, 0.1),
-          2px 0 0 rgba(0, 0, 0, 0.1),
-          2px 2px 4px rgba(0, 0, 0, 0.4);
-        color: white;
-      }
-      .circle {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin: 0 auto 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .circle-community {
-        background-color: #007bff;
-      }
-      .circle-practice {
-        background-color: #28a745;
-      }
-      .circle-free {
-        background-color: #fd7e14;
-      }
-      .circle i {
-        color: white;
-        font-size: 2.5rem;
-      }
-      #error {
-        text-align: center;
-      }
-      .logo {
-        width: 40px;
-        height: 40px;
-        margin-right: 10px;
-        vertical-align: middle;
-      }
-      @media (max-width: 767px) {
-        .navbar-nav {
-          text-align: center;
+        body {
+            font-family: 'Arial', sans-serif;
         }
-        .navbar-collapse {
-          background-color: #fff;
-          padding: 1rem;
+        .hero {
+            background-image: url('/img/banner.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+        .hero h2, .hero p, .hero a {
+            text-shadow:
+                    -2px -2px 0 rgba(0, 0, 0, 0.1),
+                    2px -2px 0 rgba(0, 0, 0, 0.1),
+                    -2px 2px 0 rgba(0, 0, 0, 0.1),
+                    2px 2px 0 rgba(0, 0, 0, 0.1),
+                    0 -2px 0 rgba(0, 0, 0, 0.1),
+                    0 2px 0 rgba(0, 0, 0, 0.1),
+                    -2px 0 0 rgba(0, 0, 0, 0.1),
+                    2px 0 0 rgba(0, 0, 0, 0.1),
+                    2px 2px 4px rgba(0, 0, 0, 0.4);
+            color: white;
+        }
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .circle-community {
+            background-color: #007bff;
+        }
+        .circle-practice {
+            background-color: #28a745;
+        }
+        .circle-free {
+            background-color: #fd7e14;
+        }
+        .circle i {
+            color: white;
+            font-size: 2.5rem;
+        }
+        #error {
+            text-align: center;
+        }
+        .logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        @media (max-width: 767px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .navbar-collapse {
+                background-color: #fff;
+                padding: 1rem;
+            }
+            .control-button {
+                width: 40px;
+                height: 40px;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+        @media (min-width: 768px) {
+            .navbar-nav {
+                flex-direction: row !important;
+                gap: 1.5rem;
+            }
+            .nav-item {
+                display: inline-flex;
+                align-items: center;
+            }
+            .nav-link {
+                white-space: nowrap;
+                padding: 0.5rem 1rem !important;
+            }
+        }
+        .quote-container, .dictionary-container, .idiom-container, .quiz-container {
+            text-align: center;
+            padding: 15px 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            max-width: 850px;
+            width: 90%;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin: 10px auto;
+            position: relative;
+            min-height: 200px;
+        }
+        .dictionary-container, .quiz-container {
+            min-height: 0;
+        }
+        #getNewBatchButton, #search-dictionary, #getNewIdiomBatchButton, #fetchQuizButton {
+            background-color: #28a745;
+            width: auto;
+            padding: 8px 18px;
+            font-size: 0.9em;
+            position: relative;
+            margin: 0 auto 15px;
+            border-radius: 24px;
+        }
+        #getNewBatchButton:hover, #search-dictionary:hover, #getNewIdiomBatchButton:hover, #fetchQuizButton:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+        #getNewBatchButton:active, #search-dictionary:active, #getNewIdiomBatchButton:active, #fetchQuizButton:active {
+            transform: scale(1);
+        }
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
         }
         .control-button {
-          width: 40px;
-          height: 40px;
-          padding: 0;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+            padding: 8px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
         }
-      }
-      @media (min-width: 768px) {
-        .navbar-nav {
-          flex-direction: row !important;
-          gap: 1.5rem;
+        .control-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1);
         }
-        .nav-item {
-          display: inline-flex;
-          align-items: center;
+        .control-button:active {
+            transform: scale(1);
         }
-        .nav-link {
-          white-space: nowrap;
-          padding: 0.5rem 1rem !important;
+        .submit-button {
+            background-color: #28a745;
         }
-      }
-      .quote-container, .dictionary-container, .idiom-container, .quiz-container {
-        text-align: center;
-        padding: 15px 20px;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        max-width: 850px;
-        width: 90%;
-        background-color: #ffffff;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        margin: 10px auto;
-        position: relative;
-        min-height: 200px;
-      }
-      .dictionary-container, .quiz-container {
-        min-height: 0;
-      }
-      #getNewBatchButton, #search-dictionary, #getNewIdiomBatchButton, #fetchQuizButton {
-        background-color: #28a745;
-        width: auto;
-        padding: 8px 18px;
-        font-size: 0.9em;
-        position: relative;
-        margin: 0 auto 15px;
-        border-radius: 24px;
-      }
-      #getNewBatchButton:hover, #search-dictionary:hover, #getNewIdiomBatchButton:hover, #fetchQuizButton:hover {
-        background-color: #218838;
-        transform: scale(1.1);
-      }
-      #getNewBatchButton:active, #search-dictionary:active, #getNewIdiomBatchButton:active, #fetchQuizButton:active {
-        transform: scale(1);
-      }
-      .controls {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin-bottom: 15px;
-      }
-      .control-button {
-        padding: 8px;
-        font-size: 1.2em;
-        cursor: pointer;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        transition: background-color 0.3s ease, transform 0.1s ease;
-        width: 48px;
-        height: 48px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-      }
-      .control-button:hover {
-        background-color: #0056b3;
-        transform: scale(1.1);
-      }
-      .control-button:active {
-        transform: scale(1);
-      }
-      .submit-button {
-        background-color: #28a745;
-      }
-      .submit-button:hover {
-        background-color: #218838;
-      }
-      .quote-text-wrapper, .idiom-text-wrapper {
-        flex-grow: 1;
-        max-height: 100%;
-        overflow-y: auto;
-        padding: 5px 20px;
-        margin-bottom: 10px;
-        min-height: 50px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-      }
-      .quote-text, .idiom-text, .quiz-question {
-        font-size: 1.2em;
-        font-style: italic;
-        line-height: 1.4;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        box-sizing: border-box;
-        white-space: normal;
-        word-wrap: break-word;
-        flex-shrink: 0;
-        flex-grow: 0;
-      }
-      .quote-author, .idiom-definition, .idiom-example, .quiz-explanation {
-        font-size: 0.95em;
-        font-weight: bold;
-        color: #555;
-        margin-bottom: 15px;
-        flex-shrink: 0;
-      }
-      .idiom-example {
-        font-style: italic;
-      }
-      .dictionary-input, .quiz-input, .quiz-select {
-        padding: 8px;
-        font-size: 1em;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        width: 100%;
-        margin: 0 auto 10px;
-      }
-      .dictionary-result, .quiz-result {
-        display: none;
-        font-size: 1.1em;
-        line-height: 1.5;
-        padding: 10px;
-        text-align: left;
-        min-height: 50px;
-      }
-      .dictionary-error, .quiz-error {
-        color: #dc3545;
-        font-weight: bold;
-        text-align: center;
-      }
-      .word {
-        color: #007bff;
-        font-size: 1.5em;
-        font-weight: bold;
-      }
-      .phonetic {
-        color: #555;
-        font-style: italic;
-      }
-      .definition, .example {
-        margin: 10px 0;
-      }
-      .audio-button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 1.2em;
-        color: #007bff;
-        transition: transform 0.2s ease;
-      }
-      .audio-button:hover {
-        transform: scale(1.2);
-      }
-      .audio-button i {
-        pointer-events: none;
-      }
-      .quiz-options {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 15px;
-      }
-      .quiz-option {
-        padding: 10px;
-        background-color: #f8f9fa;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
-        text-align: left;
-      }
-      .quiz-option:hover {
-        background-color: #e9ecef;
-      }
-      .quiz-option.selected {
-        background-color: #007bff;
-        color: white;
-        border-color: #0056b3;
-      }
-      .quiz-option.correct {
-        background-color: #28a745;
-        color: white;
-        border-color: #218838;
-      }
-      .quiz-option.wrong {
-        background-color: #dc3545;
-        color: white;
-        border-color: #c82333;
-      }
-      .quiz-controls {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
-        margin: 15px 0;
-      }
-      .quiz-text-wrapper {
-        overflow-x: hidden;
-        overflow-y: auto;
-        max-width: 100%;
-        padding: 5px 20px;
-        margin-bottom: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        box-sizing: border-box;
-      }
-      .g-recaptcha {
-        display: none;
-        margin-bottom: 15px;
-      }
-      .loading-spinner {
-        display: none;
-        border: 4px solid #f3f3f3;
-        border-top: 4px solid #007bff;
-        border-radius: 50%;
-        width: 30px;
-        height: 30px;
-        animation: spin 1s linear infinite;
-        margin: 10px auto;
-      }
-      @keyframes spin {
-        0% { transform: rotate(0deg); }
-        100% { transform: rotate(360deg); }
-      }
+        .submit-button:hover {
+            background-color: #218838;
+        }
+        .submit-button, .next-button {
+            width: auto;
+            padding: 8px 18px;
+            border-radius: 24px;
+            font-size: 0.9em;
+        }
+        .submit-button i, .next-button i {
+            margin-right: 5px;
+        }
+        .quote-text-wrapper, .idiom-text-wrapper {
+            flex-grow: 1;
+            max-height: 100%;
+            overflow-y: auto;
+            padding: 5px 20px;
+            margin-bottom: 10px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .quote-text, .idiom-text, .quiz-question {
+            font-size: 1.2em;
+            font-style: italic;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            box-sizing: border-box;
+            white-space: normal;
+            word-wrap: break-word;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+        .quote-author, .idiom-definition, .idiom-example, .quiz-explanation {
+            font-size: 0.95em;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 15px;
+            flex-shrink: 0;
+        }
+        .idiom-example {
+            font-style: italic;
+        }
+        .dictionary-input, .quiz-select {
+            padding: 8px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 100%;
+            margin: 0 auto 10px;
+        }
+        .dictionary-result, .quiz-result {
+            display: none;
+            font-size: 1.1em;
+            line-height: 1.5;
+            padding: 10px;
+            text-align: left;
+            min-height: 50px;
+        }
+        .dictionary-error, .quiz-error {
+            color: #dc3545;
+            font-weight: bold;
+            text-align: center;
+        }
+        .word {
+            color: #007bff;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .phonetic {
+            color: #555;
+            font-style: italic;
+        }
+        .definition, .example {
+            margin: 10px 0;
+        }
+        .audio-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2em;
+            color: #007bff;
+            transition: transform 0.2s ease;
+        }
+        .audio-button:hover {
+            transform: scale(1.2);
+        }
+        .audio-button i {
+            pointer-events: none;
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .quiz-option {
+            padding: 10px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            text-align: left;
+        }
+        .quiz-option:hover {
+            background-color: #e9ecef;
+        }
+        .quiz-option.selected {
+            background-color: #007bff;
+            color: white;
+            border-color: #0056b3;
+        }
+        .quiz-option.correct {
+            background-color: #28a745;
+            color: white;
+            border-color: #218838;
+        }
+        .quiz-option.wrong {
+            background-color: #dc3545;
+            color: white;
+            border-color: #c82333;
+        }
+        .quiz-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .quiz-text-wrapper {
+            overflow-x: hidden;
+            overflow-y: auto;
+            max-width: 100%;
+            padding: 5px 20px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .g-recaptcha {
+            display: none;
+            margin-bottom: 15px;
+        }
+        .loading-spinner {
+            display: none;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #007bff;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 10px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
-  </head>
-  <body class="bg-light">
-    <!-- Header -->
-    <header class="bg-white shadow">
-      <nav class="container container-lg mx-auto px-4 py-3 navbar navbar-expand-md">
+</head>
+<body class="bg-light">
+<!-- Header -->
+<header class="bg-white shadow">
+    <nav class="container container-lg mx-auto px-4 py-3 navbar navbar-expand-md">
         <div class="d-flex align-items-center w-100">
-          <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
-            <img src="/img/logo.png" alt="English Chat Logo" class="logo">
-            English Space
-          </h1>
-          <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <h1 class="fs-3 fw-bold text-primary mb-0 d-flex align-items-center">
+                <img src="/img/logo.png" alt="English Chat Logo" class="logo">
+                English Space
+            </h1>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </div>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav ms-auto">
-            <li class="nav-item dropdown">
-              <a class="nav-link text-dark dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Resources
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
-                <li><a class="dropdown-item" href="#quiz">English Grammar Quiz</a></li>
-                <li><a class="dropdown-item" href="#dictionary">English Dictionary</a></li>
-                <li><a class="dropdown-item" href="#quotes">English Quotes</a></li>
-                <li><a class="dropdown-item" href="#idioms">English Idioms</a></li>
-              </ul>
-            </li>
-            <li class="nav-item"><a href="#disqus_thread" class="nav-link text-dark">Join the Chat</a></li>
-          </ul>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item dropdown">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Resources
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="resourcesDropdown">
+                        <li><a class="dropdown-item" href="#quiz">English Grammar Quiz</a></li>
+                        <li><a class="dropdown-item" href="#dictionary">English Dictionary</a></li>
+                        <li><a class="dropdown-item" href="#quotes">English Quotes</a></li>
+                        <li><a class="dropdown-item" href="#idioms">English Idioms</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item"><a href="#disqus_thread" class="nav-link text-dark">Join the Chat</a></li>
+            </ul>
         </div>
-      </nav>
-    </header>
+    </nav>
+</header>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero py-5 sagenv-5 text-center text-white">
-      <div class="container container-lg px-4">
+<!-- Hero Section -->
+<section id="home" class="hero py-5 sagenv-5 text-center text-white">
+    <div class="container container-lg px-4">
         <h2 class="fs-1 fw-bold mb-4">Let’s Learn English Together</h2>
         <p class="fs-5 mb-4">Explore our resources, practice skills, and connect with learners to improve your English!</p>
         <a href="#disqus_thread" class="btn btn-primary px-4 py-2 rounded-pill">Join the Chat</a>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-white">
-      <div class="container container-lg px-4">
+<!-- About Section -->
+<section id="about" class="py-5 bg-white">
+    <div class="container container-lg px-4">
         <h3 class="fs-2 fw-bold text-center mb-5">Why Learn with Us?</h3>
         <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col text-center">
-            <div class="circle circle-community">
-              <i class="fas fa-users"></i>
-            </div>
-            <h4 class="fs-4 fw-semibold mb-2">Global Community</h4>
-            <p class="text-muted">Connect with people from different cultures and backgrounds to improve your English.</p>
-          </div>
-          <div class="col text-center">
-            <div class="circle circle-practice">
-              <i class="fas fa-compass"></i>
-            </div>
-            <h4 class="fs-4 fw-semibold mb-2">Your English Journey</h4>
-            <p class="text-muted">Navigate learning with tools to enhance your language skills, day by day.</p>
-          </div>
-          <div class="col text-center">
-            <div class="circle circle-free">
-              <i class="fas fa-gift"></i>
-            </div>
-            <h4 class="fs-4 fw-semibold mb-2">Free to Join</h4>
-            <p class="text-muted">Learn, practice, and grow – all without paying anything</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Grammar Quiz Section -->
-    <section id="quiz" class="py-4">
-        <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Test Your Grammar Skills</h3>
-        <div class="quiz-container">
-            <div class="quiz-controls flex-column flex-md-row align-items-center justify-content-center gap-3">
-                <select id="quiz-level" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
-                    <option value="A">Beginner (A1-A2)</option>
-                    <option value="B" selected>Intermediate (B1-B2)</option>
-                    <option value="C">Advanced (C1-C2)</option>
-                </select>
-                <select id="quiz-num-questions" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
-                    <option value="5">5 Questions</option>
-                    <option value="10">10 Questions</option>
-                    <option value="15">15 Questions</option>
-                    <option value="20">20 Questions</option>
-                </select>
-                <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()">Start Quiz</button>
-            </div>
-            <div class="d-flex justify-content-center">
-                <div class="g-recaptcha"
-                     data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
-                     data-callback="onRecaptchaSuccess">
+            <div class="col text-center">
+                <div class="circle circle-community">
+                    <i class="fas fa-users"></i>
                 </div>
+                <h4 class="fs-4 fw-semibold mb-2">Global Community</h4>
+                <p class="text-muted">Connect with people from different cultures and backgrounds to improve your English.</p>
             </div>
-            <div class="quiz-text-wrapper">
-                <p class="quiz-question" id="quizQuestion">Click 'Start Quiz' to begin.</p>
-                <div class="loading-spinner" id="quizLoadingSpinner"></div>
+            <div class="col text-center">
+                <div class="circle circle-practice">
+                    <i class="fas fa-compass"></i>
+                </div>
+                <h4 class="fs-4 fw-semibold mb-2">Your English Journey</h4>
+                <p class="text-muted">Navigate learning with tools to enhance your language skills, day by day.</p>
             </div>
-            <div class="quiz-options" id="quizOptions"></div>
-            <div class="quiz-result" id="quizResult"></div>
-            <div class="quiz-controls" id="quizNavigation" style="display: none;">
-                <button class="control-button submit-button" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check"></i></button>
-                <button class="control-button" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;"><i class="fas fa-arrow-right"></i></button>
-                <button class="control-button" id="showResultsButton" onclick="showResults()" style="display: none;">Show Results</button>
+            <div class="col text-center">
+                <div class="circle circle-free">
+                    <i class="fas fa-gift"></i>
+                </div>
+                <h4 class="fs-4 fw-semibold mb-2">Free to Join</h4>
+                <p class="text-muted">Learn, practice, and grow – all without paying anything</p>
             </div>
-            <script>
-                const QUIZ_API_URL = 'https://redlog20201-grammar-quiz.hf.space/api/grammar-quiz';
-                let quizQuestions = [];
-                let currentQuestionIndex = 0;
-                let selectedAnswer = null;
-                let correctAnswers = 0; // Track number of correct answers
+        </div>
+    </div>
+</section>
 
-                // Enable Start Quiz button when reCAPTCHA is completed
-                function onRecaptchaSuccess(token) {
-                    document.getElementById('fetchQuizButton').disabled = false;
-                }
+<!-- Grammar Quiz Section -->
+<section id="quiz" class="py-4">
+    <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Test Your Grammar Skills</h3>
+    <div class="quiz-container">
+        <div class="quiz-controls flex-column flex-md-row align-items-center justify-content-center gap-3">
+            <select id="quiz-level" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
+                <option value="A">Beginner (A1-A2)</option>
+                <option value="B" selected>Intermediate (B1-B2)</option>
+                <option value="C">Advanced (C1-C2)</option>
+            </select>
+            <select id="quiz-num-questions" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
+                <option value="5">5 Questions</option>
+                <option value="10">10 Questions</option>
+                <option value="15">15 Questions</option>
+                <option value="20">20 Questions</option>
+            </select>
+            <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()">Start Quiz</button>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="g-recaptcha"
+                 data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
+                 data-callback="onRecaptchaSuccess">
+            </div>
+        </div>
+        <div class="quiz-text-wrapper">
+            <p class="quiz-question" id="quizQuestion">Click 'Start Quiz' to begin.</p>
+            <div class="loading-spinner" id="quizLoadingSpinner"></div>
+        </div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-result" id="quizResult"></div>
+        <div class="quiz-controls" id="quizNavigation" style="display: none;">
+            <button class="control-button submit-button btn btn-success" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check me-2"></i> Submit</button>
+            <button class="control-button next-button btn btn-primary" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;">Next <i class="fas fa-arrow-right me-2"></i></button>
+            <button class="control-button btn btn-primary" id="showResultsButton" onclick="showResults()" style="display: none;">Show Results</button>
+        </div>
+        <script>
+            const QUIZ_API_URL = 'https://redlog20201-grammar-quiz.hf.space/api/grammar-quiz';
+            let quizQuestions = [];
+            let currentQuestionIndex = 0;
+            let selectedAnswer = null;
+            let correctAnswers = 0; // Track number of correct answers
 
-                async function fetchQuiz() {
-                    try {
-                        const level = document.getElementById('quiz-level').value;
-                        const numQuestions = document.getElementById('quiz-num-questions').value;
-                        const recaptchaElement = document.querySelector('.g-recaptcha');
-                        const questionElement = document.getElementById('quizQuestion');
-                        const spinner = document.getElementById('quizLoadingSpinner');
-                        const optionsElement = document.getElementById('quizOptions');
-                        const resultElement = document.getElementById('quizResult');
-                        const navigationElement = document.getElementById('quizNavigation');
-                        const fetchQuizButton = document.getElementById('fetchQuizButton');
+            // Enable Start Quiz button when reCAPTCHA is completed
+            function onRecaptchaSuccess(token) {
+                document.getElementById('fetchQuizButton').disabled = false;
+            }
 
-                        // Show reCAPTCHA and disable Start Quiz button
-                        recaptchaElement.style.display = 'inline-block';
-                        fetchQuizButton.disabled = true;
-
-                        const recaptchaResponse = grecaptcha.getResponse();
-                        if (!recaptchaResponse) {
-                            questionElement.innerText = "";
-                            optionsElement.innerHTML = '';
-                            resultElement.innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA to start the quiz.</p>';
-                            resultElement.style.display = 'block';
-                            navigationElement.style.display = 'none';
-                            return;
-                        }
-
-                        // Show loading spinner
-                        spinner.style.display = 'block';
-                        questionElement.innerText = "Loading questions...";
-
-                        const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g_recaptcha_response=${encodeURIComponent(recaptchaResponse)}`);
-
-                        if (!response.ok) {
-                            const errorData = await response.json();
-                            throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
-                        }
-
-                        quizQuestions = await response.json();
-                        currentQuestionIndex = 0;
-                        selectedAnswer = null;
-                        correctAnswers = 0; // Reset correct answers for new quiz
-                        showCurrentQuestion();
-                        navigationElement.style.display = 'flex';
-                        grecaptcha.reset();
-                        recaptchaElement.style.display = 'none'; // Hide reCAPTCHA after successful fetch
-                    } catch (error) {
-                        console.error("Error fetching quiz:", error);
-                        let errorMessage = "Failed to load quiz. Please try again later.";
-                        if (error.message.includes("reCAPTCHA")) {
-                            errorMessage = "reCAPTCHA verification failed. Please try again.";
-                        }
-                        document.getElementById('quizQuestion').innerText = "Failed to load quiz.";
-                        document.getElementById('quizOptions').innerHTML = '';
-                        document.getElementById('quizResult').innerHTML = `<p class="quiz-error">${errorMessage}</p>`;
-                        document.getElementById('quizResult').style.display = 'block';
-                        document.getElementById('quizNavigation').style.display = 'none';
-                        document.querySelector('.g-recaptcha').style.display = 'none'; // Hide reCAPTCHA on error
-                        // Re-enable Start Quiz button to allow retry
-                        document.getElementById('fetchQuizButton').disabled = false;
-                    } finally {
-                        document.getElementById('quizLoadingSpinner').style.display = 'none';
-                    }
-                }
-
-                function showCurrentQuestion() {
-                    const question = quizQuestions[currentQuestionIndex];
+            async function fetchQuiz() {
+                try {
+                    const level = document.getElementById('quiz-level').value;
+                    const numQuestions = document.getElementById('quiz-num-questions').value;
+                    const recaptchaElement = document.querySelector('.g-recaptcha');
                     const questionElement = document.getElementById('quizQuestion');
+                    const spinner = document.getElementById('quizLoadingSpinner');
                     const optionsElement = document.getElementById('quizOptions');
                     const resultElement = document.getElementById('quizResult');
-                    const submitButton = document.getElementById('submitAnswerButton');
-                    const nextButton = document.getElementById('nextQuestionButton');
-                    const showResultsButton = document.getElementById('showResultsButton');
+                    const navigationElement = document.getElementById('quizNavigation');
+                    const fetchQuizButton = document.getElementById('fetchQuizButton');
 
-                    if (question) {
-                        questionElement.innerText = question.question;
-                        optionsElement.innerHTML = question.options.map((option, index) => `
-                        <div class="quiz-option" onclick="selectOption(${index})">${option}</div>
-                    `).join('');
-                        resultElement.style.display = 'none';
-                        resultElement.innerHTML = '';
-                        selectedAnswer = null;
-                        submitButton.style.display = 'block';
-                        nextButton.style.display = 'none';
-                        showResultsButton.style.display = 'none';
-                    } else {
-                        questionElement.innerText = "No questions available.";
+                    // Show reCAPTCHA and disable Start Quiz button
+                    recaptchaElement.style.display = 'inline-block';
+                    fetchQuizButton.disabled = true;
+
+                    const recaptchaResponse = grecaptcha.getResponse();
+                    if (!recaptchaResponse) {
+                        questionElement.innerText = "";
                         optionsElement.innerHTML = '';
-                        resultElement.innerHTML = '';
-                        submitButton.style.display = 'none';
-                        nextButton.style.display = 'none';
-                        showResultsButton.style.display = 'none';
-                    }
-                }
-
-                function selectOption(index) {
-                    const options = document.getElementsByClassName('quiz-option');
-                    for (let i = 0; i < options.length; i++) {
-                        options[i].classList.remove('selected');
-                    }
-                    options[index].classList.add('selected');
-                    selectedAnswer = quizQuestions[currentQuestionIndex].options[index];
-                }
-
-                function submitAnswer() {
-                    const question = quizQuestions[currentQuestionIndex];
-                    const resultElement = document.getElementById('quizResult');
-                    const options = document.getElementsByClassName('quiz-option');
-                    const submitButton = document.getElementById('submitAnswerButton');
-                    const nextButton = document.getElementById('nextQuestionButton');
-                    const showResultsButton = document.getElementById('showResultsButton');
-
-                    if (!selectedAnswer) {
-                        resultElement.innerHTML = '<p class="quiz-error">Please select an answer.</p>';
+                        resultElement.innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA to start the quiz.</p>';
                         resultElement.style.display = 'block';
+                        navigationElement.style.display = 'none';
                         return;
                     }
 
-                    const isCorrect = selectedAnswer === question.correctAnswer;
-                    if (isCorrect) {
-                        correctAnswers++; // Increment correct answers
+                    // Show loading spinner
+                    spinner.style.display = 'block';
+                    questionElement.innerText = "Loading questions...";
+
+                    const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g_recaptcha_response=${encodeURIComponent(recaptchaResponse)}`);
+
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
                     }
 
-                    for (let i = 0; i < options.length; i++) {
-                        const option = options[i];
-                        if (option.innerText === question.correctAnswer) {
-                            option.classList.add('correct');
-                        } else if (option.innerText === selectedAnswer && !isCorrect) {
-                            option.classList.add('wrong');
-                        }
+                    quizQuestions = await response.json();
+                    currentQuestionIndex = 0;
+                    selectedAnswer = null;
+                    correctAnswers = 0; // Reset correct answers for new quiz
+                    showCurrentQuestion();
+                    navigationElement.style.display = 'flex';
+                    grecaptcha.reset();
+                    recaptchaElement.style.display = 'none'; // Hide reCAPTCHA after successful fetch
+                } catch (error) {
+                    console.error("Error fetching quiz:", error);
+                    let errorMessage = "Failed to load quiz. Please try again later.";
+                    if (error.message.includes("reCAPTCHA")) {
+                        errorMessage = "reCAPTCHA verification failed. Please try again.";
                     }
+                    document.getElementById('quizQuestion').innerText = "Failed to load quiz.";
+                    document.getElementById('quizOptions').innerHTML = '';
+                    document.getElementById('quizResult').innerHTML = `<p class="quiz-error">${errorMessage}</p>`;
+                    document.getElementById('quizResult').style.display = 'block';
+                    document.getElementById('quizNavigation').style.display = 'none';
+                    document.querySelector('.g-recaptcha').style.display = 'none'; // Hide reCAPTCHA on error
+                    // Re-enable Start Quiz button to allow retry
+                    document.getElementById('fetchQuizButton').disabled = false;
+                } finally {
+                    document.getElementById('quizLoadingSpinner').style.display = 'none';
+                }
+            }
 
-                    resultElement.innerHTML = `
+            function showCurrentQuestion() {
+                const question = quizQuestions[currentQuestionIndex];
+                const questionElement = document.getElementById('quizQuestion');
+                const optionsElement = document.getElementById('quizOptions');
+                const resultElement = document.getElementById('quizResult');
+                const submitButton = document.getElementById('submitAnswerButton');
+                const nextButton = document.getElementById('nextQuestionButton');
+                const showResultsButton = document.getElementById('showResultsButton');
+
+                if (question) {
+                    questionElement.innerText = question.question;
+                    optionsElement.innerHTML = question.options.map((option, index) => `
+                        <div class="quiz-option" onclick="selectOption(${index})">${option}</div>
+                    `).join('');
+                    resultElement.style.display = 'none';
+                    resultElement.innerHTML = '';
+                    selectedAnswer = null;
+                    submitButton.style.display = 'block';
+                    nextButton.style.display = 'none';
+                    showResultsButton.style.display = 'none';
+                } else {
+                    questionElement.innerText = "No questions available.";
+                    optionsElement.innerHTML = '';
+                    resultElement.innerHTML = '';
+                    submitButton.style.display = 'none';
+                    nextButton.style.display = 'none';
+                    showResultsButton.style.display = 'none';
+                }
+            }
+
+            function selectOption(index) {
+                const options = document.getElementsByClassName('quiz-option');
+                for (let i = 0; i < options.length; i++) {
+                    options[i].classList.remove('selected');
+                }
+                options[index].classList.add('selected');
+                selectedAnswer = quizQuestions[currentQuestionIndex].options[index];
+            }
+
+            function submitAnswer() {
+                const question = quizQuestions[currentQuestionIndex];
+                const resultElement = document.getElementById('quizResult');
+                const options = document.getElementsByClassName('quiz-option');
+                const submitButton = document.getElementById('submitAnswerButton');
+                const nextButton = document.getElementById('nextQuestionButton');
+                const showResultsButton = document.getElementById('showResultsButton');
+
+                if (!selectedAnswer) {
+                    resultElement.innerHTML = '<p class="quiz-error">Please select an answer.</p>';
+                    resultElement.style.display = 'block';
+                    return;
+                }
+
+                const isCorrect = selectedAnswer === question.correctAnswer;
+                if (isCorrect) {
+                    correctAnswers++; // Increment correct answers
+                }
+
+                for (let i = 0; i < options.length; i++) {
+                    const option = options[i];
+                    if (option.innerText === question.correctAnswer) {
+                        option.classList.add('correct');
+                    } else if (option.innerText === selectedAnswer && !isCorrect) {
+                        option.classList.add('wrong');
+                    }
+                }
+
+                resultElement.innerHTML = `
                     <p class="quiz-explanation">${isCorrect ? 'Correct!' : 'Incorrect.'} ${question.explanation}</p>
                 `;
-                    resultElement.style.display = 'block';
-                    submitButton.style.display = 'none';
+                resultElement.style.display = 'block';
+                submitButton.style.display = 'none';
 
-                    if (currentQuestionIndex < quizQuestions.length - 1) {
-                        nextButton.style.display = 'block';
-                        showResultsButton.style.display = 'none';
-                    } else {
-                        showResultsButton.style.display = 'block';
-                        nextButton.style.display = 'none';
-                    }
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    nextButton.style.display = 'block';
+                    showResultsButton.style.display = 'none';
+                } else {
+                    showResultsButton.style.display = 'block';
+                    nextButton.style.display = 'none';
                 }
+            }
 
-                function showNextQuestion() {
-                    if (currentQuestionIndex < quizQuestions.length - 1) {
-                        currentQuestionIndex++;
-                        showCurrentQuestion();
-                    }
+            function showNextQuestion() {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    showCurrentQuestion();
                 }
+            }
 
-                function showResults() {
-                    const resultElement = document.getElementById('quizResult');
-                    const questionElement = document.getElementById('quizQuestion');
-                    const optionsElement = document.getElementById('quizOptions');
-                    const navigationElement = document.getElementById('quizNavigation');
-                    const showResultsButton = document.getElementById('showResultsButton');
-                    const fetchQuizButton = document.getElementById('fetchQuizButton');
+            function showResults() {
+                const resultElement = document.getElementById('quizResult');
+                const questionElement = document.getElementById('quizQuestion');
+                const optionsElement = document.getElementById('quizOptions');
+                const navigationElement = document.getElementById('quizNavigation');
+                const showResultsButton = document.getElementById('showResultsButton');
+                const fetchQuizButton = document.getElementById('fetchQuizButton');
 
-                    resultElement.innerHTML = `
+                resultElement.innerHTML = `
                     <p class="quiz-explanation">Quiz completed! You got ${correctAnswers} out of ${quizQuestions.length} correct!</p>
                     <p class="quiz-explanation">Click 'Start Quiz' to begin a new quiz.</p>
                 `;
-                    questionElement.innerText = "Click 'Start Quiz' to begin.";
-                    optionsElement.innerHTML = '';
-                    navigationElement.style.display = 'none';
-                    showResultsButton.style.display = 'none';
-                    fetchQuizButton.disabled = false; // Enable Start Quiz button to show reCAPTCHA
+                questionElement.innerText = "Click 'Start Quiz' to begin.";
+                optionsElement.innerHTML = '';
+                navigationElement.style.display = 'none';
+                showResultsButton.style.display = 'none';
+                fetchQuizButton.disabled = false; // Enable Start Quiz button to show reCAPTCHA
 
-                    // Reset quiz state
-                    quizQuestions = [];
-                    currentQuestionIndex = 0;
-                    selectedAnswer = null;
-                    correctAnswers = 0;
-                }
-            </script>
-        </div>
-    </section>
+                // Reset quiz state
+                quizQuestions = [];
+                currentQuestionIndex = 0;
+                selectedAnswer = null;
+                correctAnswers = 0;
+            }
+        </script>
+    </div>
+</section>
 
-    <!-- Dictionary Section -->
-    <section id="dictionary" class="py-4">
-      <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Look Up English Words</h3>
-      <div class="dictionary-container">
+<!-- Dictionary Section -->
+<section id="dictionary" class="py-4">
+    <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Look Up English Words</h3>
+    <div class="dictionary-container">
         <input type="text" id="word-input" class="dictionary-input" placeholder="Enter a word (e.g., hello)">
         <button class="control-button" id="search-dictionary">Search Word</button>
         <div class="dictionary-result" id="dictionary-result"></div>
-      </div>
-      <script>
+    </div>
+    <script>
         const DICTIONARY_API_URL = 'https://api.dictionaryapi.dev/api/v2/entries/en/';
         const wordInput = document.getElementById('word-input');
         const searchButton = document.getElementById('search-dictionary');
         const resultDiv = document.getElementById('dictionary-result');
 
         window.addEventListener('load', () => {
-          wordInput.value = '';
+            wordInput.value = '';
         });
 
         async function searchWord(word) {
-          try {
-            resultDiv.innerHTML = '<p>Loading...</p>';
-            resultDiv.style.display = 'block';
-            const response = await fetch(`${DICTIONARY_API_URL}${word}`);
-            if (!response.ok) {
-              throw new Error('Word not found');
-            }
-            const data = await response.json();
-            const wordData = data[0];
-            const phonetic = wordData.phonetics.find(p => p.text) || { text: 'N/A' };
-            const audio = wordData.phonetics.find(p => p.audio) || { audio: '' };
-            let meaningsHTML = '';
-            wordData.meanings.forEach(meaning => {
-              const partOfSpeech = meaning.partOfSpeech || 'N/A';
-              let defs = `<h4 style="margin-top:15px;">Part of speech: <em>${partOfSpeech}</em></h4>`;
-              meaning.definitions.forEach((def, index) => {
-                const definition = def.definition || 'No definition';
-                const example = def.example ? `<div class="example"><strong>Example:</strong> ${def.example}</div>` : '';
-                defs += `
+            try {
+                resultDiv.innerHTML = '<p>Loading...</p>';
+                resultDiv.style.display = 'block';
+                const response = await fetch(`${DICTIONARY_API_URL}${word}`);
+                if (!response.ok) {
+                    throw new Error('Word not found');
+                }
+                const data = await response.json();
+                const wordData = data[0];
+                const phonetic = wordData.phonetics.find(p => p.text) || { text: 'N/A' };
+                const audio = wordData.phonetics.find(p => p.audio) || { audio: '' };
+                let meaningsHTML = '';
+                wordData.meanings.forEach(meaning => {
+                    const partOfSpeech = meaning.partOfSpeech || 'N/A';
+                    let defs = `<h4 style="margin-top:15px;">Part of speech: <em>${partOfSpeech}</em></h4>`;
+                    meaning.definitions.forEach((def, index) => {
+                        const definition = def.definition || 'No definition';
+                        const example = def.example ? `<div class="example"><strong>Example:</strong> ${def.example}</div>` : '';
+                        defs += `
                   <div class="definition">
                     <strong>Definition ${index + 1}:</strong> ${definition}
                     ${example}
                   </div>
                 `;
-              });
-              meaningsHTML += defs;
-            });
-            const audioHTML = audio.audio
-              ? `<button id="play-audio" class="audio-button" title="Play pronunciation">
+                    });
+                    meaningsHTML += defs;
+                });
+                const audioHTML = audio.audio
+                    ? `<button id="play-audio" class="audio-button" title="Play pronunciation">
                    <i class="fas fa-volume-up"></i>
                  </button>`
-              : '<span style="color:#888;">No audio available</span>';
-            resultDiv.innerHTML = `
+                    : '<span style="color:#888;">No audio available</span>';
+                resultDiv.innerHTML = `
               <div class="word">${wordData.word} ${audioHTML}</div>
               <div class="phonetic">Pronunciation: ${phonetic.text}</div>
               ${meaningsHTML}
             `;
-            if (audio.audio) {
-              const playButton = document.getElementById('play-audio');
-              playButton.addEventListener('click', () => {
-                const audioObj = new Audio(audio.audio);
-                audioObj.play();
-              });
+                if (audio.audio) {
+                    const playButton = document.getElementById('play-audio');
+                    playButton.addEventListener('click', () => {
+                        const audioObj = new Audio(audio.audio);
+                        audioObj.play();
+                    });
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p class="dictionary-error">Error: ${error.message}. Please try another word.</p>`;
+                resultDiv.style.display = 'block';
             }
-          } catch (error) {
-            resultDiv.innerHTML = `<p class="dictionary-error">Error: ${error.message}. Please try another word.</p>`;
-            resultDiv.style.display = 'block';
-          }
         }
 
         searchButton.addEventListener('click', () => {
-          const word = wordInput.value.trim();
-          if (word) {
-            searchWord(word);
-          } else {
-            resultDiv.innerHTML = '<p class="dictionary-error">Please enter a word.</p>';
-            resultDiv.style.display = 'block';
-          }
+            const word = wordInput.value.trim();
+            if (word) {
+                searchWord(word);
+            } else {
+                resultDiv.innerHTML = '<p class="dictionary-error">Please enter a word.</p>';
+                resultDiv.style.display = 'block';
+            }
         });
 
         wordInput.addEventListener('keypress', (event) => {
-          if (event.key === 'Enter') {
-            const word = wordInput.value.trim();
-            if (word) {
-              searchWord(word);
-            } else {
-              resultDiv.innerHTML = '<p class="dictionary-error">Please enter a word.</p>';
-              resultDiv.style.display = 'block';
+            if (event.key === 'Enter') {
+                const word = wordInput.value.trim();
+                if (word) {
+                    searchWord(word);
+                } else {
+                    resultDiv.innerHTML = '<p class="dictionary-error">Please enter a word.</p>';
+                    resultDiv.style.display = 'block';
+                }
             }
-          }
         });
-      </script>
-    </section>
+    </script>
+</section>
 
-    <!-- Quote Section -->
-    <section id="quotes" class="py-4">
-      <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Explore Our Quote Collection</h3>
-      <div class="quote-container">
+<!-- Quote Section -->
+<section id="quotes" class="py-4">
+    <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Explore Our Quote Collection</h3>
+    <div class="quote-container">
         <div class="controls">
-          <button class="control-button" id="prevQuoteButton" onclick="showPreviousQuote()"><i class="fas fa-arrow-left"></i></button>
-          <button class="control-button" id="getNewBatchButton" onclick="fetchQuotes()">Next Set of Quotes</button>
-          <button class="control-button" id="nextQuoteButton" onclick="showNextQuote()"><i class="fas fa-arrow-right"></i></button>
+            <button class="control-button" id="prevQuoteButton" onclick="showPreviousQuote()"><i class="fas fa-arrow-left"></i></button>
+            <button class="control-button" id="getNewBatchButton" onclick="fetchQuotes()">Next Set of Quotes</button>
+            <button class="control-button" id="nextQuoteButton" onclick="showNextQuote()"><i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="quote-text-wrapper">
-          <p class="quote-text" id="quoteText">Loading quotes...</p>
+            <p class="quote-text" id="quoteText">Loading quotes...</p>
         </div>
         <p class="quote-author" id="quoteAuthor"></p>
         <script>
-          const QUOTE_API_URL = 'https://engspace-org-quotes.hf.space/api/quotes';
-          let fetchedQuotes = [];
-          let currentQuoteIndex = 0;
+            const QUOTE_API_URL = 'https://engspace-org-quotes.hf.space/api/quotes';
+            let fetchedQuotes = [];
+            let currentQuoteIndex = 0;
 
-          async function fetchQuotes() {
-            try {
-              const response = await fetch(QUOTE_API_URL);
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              const data = await response.json();
-              if (data && data.quotes && data.quotes.length > 0) {
-                fetchedQuotes = data.quotes;
-                currentQuoteIndex = 0;
-                showCurrentQuote();
-              } else {
-                throw new Error("No quotes received from API.");
-              }
-            } catch (error) {
-              console.error("Error fetching quotes:", error);
-              document.getElementById('quoteText').innerText = "Failed to load quotes. Please try again later.";
-              document.getElementById('quoteAuthor').innerText = "";
+            async function fetchQuotes() {
+                try {
+                    const response = await fetch(QUOTE_API_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    if (data && data.quotes && data.quotes.length > 0) {
+                        fetchedQuotes = data.quotes;
+                        currentQuoteIndex = 0;
+                        showCurrentQuote();
+                    } else {
+                        throw new Error("No quotes received from API.");
+                    }
+                } catch (error) {
+                    console.error("Error fetching quotes:", error);
+                    document.getElementById('quoteText').innerText = "Failed to load quotes. Please try again later.";
+                    document.getElementById('quoteAuthor').innerText = "";
+                }
             }
-          }
 
-          function showCurrentQuote() {
-            const quoteTextElement = document.getElementById('quoteText');
-            const quoteAuthorElement = document.getElementById('quoteAuthor');
-            if (fetchedQuotes.length > 0) {
-              const quote = fetchedQuotes[currentQuoteIndex];
-              quoteTextElement.innerText = `"${quote.quote}"`;
-              quoteAuthorElement.innerText = `- ${quote.author}`;
-            } else {
-              quoteTextElement.innerText = "No quotes available. Click 'Next Set of Quotes'.";
-              quoteAuthorElement.innerText = "";
+            function showCurrentQuote() {
+                const quoteTextElement = document.getElementById('quoteText');
+                const quoteAuthorElement = document.getElementById('quoteAuthor');
+                if (fetchedQuotes.length > 0) {
+                    const quote = fetchedQuotes[currentQuoteIndex];
+                    quoteTextElement.innerText = `"${quote.quote}"`;
+                    quoteAuthorElement.innerText = `- ${quote.author}`;
+                } else {
+                    quoteTextElement.innerText = "No quotes available. Click 'Next Set of Quotes'.";
+                    quoteAuthorElement.innerText = "";
+                }
             }
-          }
 
-          function showNextQuote() {
-            if (fetchedQuotes.length > 0) {
-              currentQuoteIndex = (currentQuoteIndex + 1) % fetchedQuotes.length;
-              showCurrentQuote();
-            } else {
-              fetchQuotes();
+            function showNextQuote() {
+                if (fetchedQuotes.length > 0) {
+                    currentQuoteIndex = (currentQuoteIndex + 1) % fetchedQuotes.length;
+                    showCurrentQuote();
+                } else {
+                    fetchQuotes();
+                }
             }
-          }
 
-          function showPreviousQuote() {
-            if (fetchedQuotes.length > 0) {
-              currentQuoteIndex = (currentQuoteIndex - 1 + fetchedQuotes.length) % fetchedQuotes.length;
-              showCurrentQuote();
-            } else {
-              fetchQuotes();
+            function showPreviousQuote() {
+                if (fetchedQuotes.length > 0) {
+                    currentQuoteIndex = (currentQuoteIndex - 1 + fetchedQuotes.length) % fetchedQuotes.length;
+                    showCurrentQuote();
+                } else {
+                    fetchQuotes();
+                }
             }
-          }
 
-          document.addEventListener('DOMContentLoaded', function() {
-            fetchQuotes();
-          });
+            document.addEventListener('DOMContentLoaded', function() {
+                fetchQuotes();
+            });
         </script>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Idioms Section -->
-    <section id="idioms" class="py-4">
-      <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Explore Our Idiom Collection</h3>
-      <div class="idiom-container">
+<!-- Idioms Section -->
+<section id="idioms" class="py-4">
+    <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Explore Our Idiom Collection</h3>
+    <div class="idiom-container">
         <div class="controls">
-          <button class="control-button" id="prevIdiomButton" onclick="showPreviousIdiom()"><i class="fas fa-arrow-left"></i></button>
-          <button class="control-button" id="getNewIdiomBatchButton" onclick="fetchIdioms()">Next Set of Idioms</button>
-          <button class="control-button" id="nextIdiomButton" onclick="showNextIdiom()"><i class="fas fa-arrow-right"></i></button>
+            <button class="control-button" id="prevIdiomButton" onclick="showPreviousIdiom()"><i class="fas fa-arrow-left"></i></button>
+            <button class="control-button" id="getNewIdiomBatchButton" onclick="fetchIdioms()">Next Set of Idioms</button>
+            <button class="control-button" id="nextIdiomButton" onclick="showNextIdiom()"><i class="fas fa-arrow-right"></i></button>
         </div>
         <div class="idiom-text-wrapper">
-          <p class="idiom-text" id="idiomText">Loading idioms...</p>
+            <p class="idiom-text" id="idiomText">Loading idioms...</p>
         </div>
         <p class="idiom-definition" id="idiomDefinition"></p>
         <p class="idiom-example" id="idiomExample"></p>
         <script>
-          const IDIOM_API_URL = 'https://engspace-org-idioms.hf.space/api/idioms';
-          let fetchedIdioms = [];
-          let currentIdiomIndex = 0;
+            const IDIOM_API_URL = 'https://engspace-org-idioms.hf.space/api/idioms';
+            let fetchedIdioms = [];
+            let currentIdiomIndex = 0;
 
-          async function fetchIdioms() {
-            try {
-              const response = await fetch(IDIOM_API_URL);
-              if (!response.ok) {
-                throw new Error(`HTTP error! Status: ${response.status}`);
-              }
-              const data = await response.json();
-              console.log('API Response:', data);
-              if (Array.isArray(data) && data.length > 0) {
-                fetchedIdioms = data;
-                currentIdiomIndex = 0;
-                showCurrentIdiom();
-              } else {
-                throw new Error("No idioms received from API or unexpected format.");
-              }
-            } catch (error) {
-              console.error("Error fetching idioms:", error);
-              document.getElementById('idiomText').innerText = "Failed to load idioms. Please try again later.";
-              document.getElementById('idiomDefinition').innerText = "";
-              document.getElementById('idiomExample').innerText = "";
+            async function fetchIdioms() {
+                try {
+                    const response = await fetch(IDIOM_API_URL);
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    console.log('API Response:', data);
+                    if (Array.isArray(data) && data.length > 0) {
+                        fetchedIdioms = data;
+                        currentIdiomIndex = 0;
+                        showCurrentIdiom();
+                    } else {
+                        throw new Error("No idioms received from API or unexpected format.");
+                    }
+                } catch (error) {
+                    console.error("Error fetching idioms:", error);
+                    document.getElementById('idiomText').innerText = "Failed to load idioms. Please try again later.";
+                    document.getElementById('idiomDefinition').innerText = "";
+                    document.getElementById('idiomExample').innerText = "";
+                }
             }
-          }
 
-          function showCurrentIdiom() {
-            const idiomTextElement = document.getElementById('idiomText');
-            const idiomDefinitionElement = document.getElementById('idiomDefinition');
-            const idiomExampleElement = document.getElementById('idiomExample');
-            if (fetchedIdioms.length > 0) {
-              const idiom = fetchedIdioms[currentIdiomIndex];
-              idiomTextElement.innerText = `"${idiom.idiom || 'N/A'}"`;
-              idiomDefinitionElement.innerText = `Definition: ${idiom.definition || 'N/A'}`;
-              idiomExampleElement.innerText = `Example: ${idiom.example || 'N/A'}`;
-            } else {
-              idiomTextElement.innerText = "No idioms available. Click 'Next Set of Idioms'.";
-              idiomDefinitionElement.innerText = "";
-              idiomExampleElement.innerText = "";
+            function showCurrentIdiom() {
+                const idiomTextElement = document.getElementById('idiomText');
+                const idiomDefinitionElement = document.getElementById('idiomDefinition');
+                const idiomExampleElement = document.getElementById('idiomExample');
+                if (fetchedIdioms.length > 0) {
+                    const idiom = fetchedIdioms[currentIdiomIndex];
+                    idiomTextElement.innerText = `"${idiom.idiom || 'N/A'}"`;
+                    idiomDefinitionElement.innerText = `Definition: ${idiom.definition || 'N/A'}`;
+                    idiomExampleElement.innerText = `Example: ${idiom.example || 'N/A'}`;
+                } else {
+                    idiomTextElement.innerText = "No idioms available. Click 'Next Set of Idioms'.";
+                    idiomDefinitionElement.innerText = "";
+                    idiomExampleElement.innerText = "";
+                }
             }
-          }
 
-          function showNextIdiom() {
-            if (fetchedIdioms.length > 0) {
-              currentIdiomIndex = (currentIdiomIndex + 1) % fetchedIdioms.length;
-              showCurrentIdiom();
-            } else {
-              fetchIdioms();
+            function showNextIdiom() {
+                if (fetchedIdioms.length > 0) {
+                    currentIdiomIndex = (currentIdiomIndex + 1) % fetchedIdioms.length;
+                    showCurrentIdiom();
+                } else {
+                    fetchIdioms();
+                }
             }
-          }
 
-          function showPreviousIdiom() {
-            if (fetchedIdioms.length > 0) {
-              currentIdiomIndex = (currentIdiomIndex - 1 + fetchedIdioms.length) % fetchedIdioms.length;
-              showCurrentIdiom();
-            } else {
-              fetchIdioms();
+            function showPreviousIdiom() {
+                if (fetchedIdioms.length > 0) {
+                    currentIdiomIndex = (currentIdiomIndex - 1 + fetchedIdioms.length) % fetchedIdioms.length;
+                    showCurrentIdiom();
+                } else {
+                    fetchIdioms();
+                }
             }
-          }
 
-          document.addEventListener('DOMContentLoaded', function() {
-            fetchIdioms();
-          });
+            document.addEventListener('DOMContentLoaded', function() {
+                fetchIdioms();
+            });
         </script>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Disqus Comment Section -->
-    <section id="disqus" class="py-3 bg-light">
-      <div class="container container-lg px-4">
+<!-- Disqus Comment Section -->
+<section id="disqus" class="py-3 bg-light">
+    <div class="container container-lg px-4">
         <h3 class="fs-2 fw-bold text-center mb-5">Join the Conversation</h3>
         <p class="text-center mb-4">Use the Disqus comment section below to practice your English. Introduce yourself, ask questions, or discuss your favorite topics!</p>
         <div id="disqus_thread"></div>
         <script>
-          var disqus_config = function () {
-            this.page.url = 'https://engspace.org/';
-            this.page.identifier = 'english-chat-home';
-          };
-          (function() {
-            var d = document, sElement = d.createElement('script');
-            sElement.src = 'https://enchat-online.disqus.com/embed.js';
-            sElement.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(sElement);
-          })();
+            var disqus_config = function () {
+                this.page.url = 'https://engspace.org/';
+                this.page.identifier = 'english-chat-home';
+            };
+            (function() {
+                var d = document, sElement = d.createElement('script');
+                sElement.src = 'https://enchat-online.disqus.com/embed.js';
+                sElement.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(sElement);
+            })();
         </script>
         <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">Disqus comments here.</a></noscript>
-      </div>
-    </section>
+    </div>
+</section>
 
-    <!-- Footer -->
-    <footer class="bg-primary text-white py-4">
-      <div class="container container-lg px-4 text-center">
+<!-- Footer -->
+<footer class="bg-primary text-white py-4">
+    <div class="container container-lg px-4 text-center">
         © 2025 English Space. All rights reserved.
-      </div>
-    </footer>
+    </div>
+</footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>
