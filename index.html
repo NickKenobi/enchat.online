@@ -390,211 +390,227 @@
 
     <!-- Grammar Quiz Section -->
     <section id="quiz" class="py-4">
-      <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Test Your Grammar Skills</h3>
-      <div class="quiz-container">
-        <div class="quiz-controls flex-column flex-md-row align-items-center justify-content-center gap-3">
-          <select id="quiz-level" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
-            <option value="A">Beginner (A1-A2)</option>
-            <option value="B" selected>Intermediate (B1-B2)</option>
-            <option value="C">Advanced (C1-C2)</option>
-          </select>
-          <select id="quiz-num-questions" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
-            <option value="5">5 Questions</option>
-            <option value="10">10 Questions</option>
-            <option value="15">15 Questions</option>
-            <option value="20">20 Questions</option>
-          </select>
-          <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()">Start Quiz</button>
-        </div>
-        <div class="d-flex justify-content-center">
-          <div class="g-recaptcha"
-               data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
-               data-callback="onRecaptchaSuccess">
-          </div>
-        </div>
-        <div class="quiz-text-wrapper">
-          <p class="quiz-question" id="quizQuestion">Click 'Start Quiz' to begin.</p>
-          <div class="loading-spinner" id="quizLoadingSpinner"></div>
-        </div>
-        <div class="quiz-options" id="quizOptions"></div>
-        <div class="quiz-result" id="quizResult"></div>
-        <div class="quiz-controls" id="quizNavigation" style="display: none;">
-          <button class="control-button submit-button" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check"></i></button>
-          <button class="control-button" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;"><i class="fas fa-arrow-right"></i></button>
-        </div>
-        <script>
-        const QUIZ_API_URL = 'https://redlog20201-grammar-quiz.hf.space/api/grammar-quiz';
-        let quizQuestions = [];
-        let currentQuestionIndex = 0;
-        let selectedAnswer = null;
-        let correctAnswers = 0; // Track number of correct answers
+        <h3 class="fs-2 fw-bold text-center mt-4 mb-5">Test Your Grammar Skills</h3>
+        <div class="quiz-container">
+            <div class="quiz-controls flex-column flex-md-row align-items-center justify-content-center gap-3">
+                <select id="quiz-level" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
+                    <option value="A">Beginner (A1-A2)</option>
+                    <option value="B" selected>Intermediate (B1-B2)</option>
+                    <option value="C">Advanced (C1-C2)</option>
+                </select>
+                <select id="quiz-num-questions" class="quiz-select form-select w-100 w-md-auto mb-2 mb-md-0">
+                    <option value="5">5 Questions</option>
+                    <option value="10">10 Questions</option>
+                    <option value="15">15 Questions</option>
+                    <option value="20">20 Questions</option>
+                </select>
+                <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()" disabled>Start Quiz</button>
+            </div>
+            <div class="d-flex justify-content-center">
+                <div class="g-recaptcha"
+                     data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
+                     data-callback="onRecaptchaSuccess">
+                </div>
+            </div>
+            <div class="quiz-text-wrapper">
+                <p class="quiz-question" id="quizQuestion">Click 'Start Quiz' to begin.</p>
+                <div class="loading-spinner" id="quizLoadingSpinner"></div>
+            </div>
+            <div class="quiz-options" id="quizOptions"></div>
+            <div class="quiz-result" id="quizResult"></div>
+            <div class="quiz-controls" id="quizNavigation" style="display: none;">
+                <button class="control-button submit-button" id="submitAnswerButton" onclick="submitAnswer()"><i class="fas fa-check"></i></button>
+                <button class="control-button" id="nextQuestionButton" onclick="showNextQuestion()" style="display: none;"><i class="fas fa-arrow-right"></i></button>
+                <button class="control-button" id="showResultsButton" onclick="showResults()" style="display: none;">Show Results</button>
+            </div>
+            <script>
+                const QUIZ_API_URL = 'https://redlog20201-grammar-quiz.hf.space/api/grammar-quiz';
+                let quizQuestions = [];
+                let currentQuestionIndex = 0;
+                let selectedAnswer = null;
+                let correctAnswers = 0; // Track number of correct answers
 
-        // Enable Start Quiz button when reCAPTCHA is completed
-        function onRecaptchaSuccess(token) {
-            document.getElementById('fetchQuizButton').disabled = false;
-        }
+                // Enable Start Quiz button when reCAPTCHA is completed
+                function onRecaptchaSuccess(token) {
+                    document.getElementById('fetchQuizButton').disabled = false;
+                }
 
-        async function fetchQuiz() {
-            try {
-                const level = document.getElementById('quiz-level').value;
-                const numQuestions = document.getElementById('quiz-num-questions').value;
-                const recaptchaElement = document.querySelector('.g-recaptcha');
-                const questionElement = document.getElementById('quizQuestion');
-                const spinner = document.getElementById('quizLoadingSpinner');
-                const optionsElement = document.getElementById('quizOptions');
-                const resultElement = document.getElementById('quizResult');
-                const navigationElement = document.getElementById('quizNavigation');
+                async function fetchQuiz() {
+                    try {
+                        const level = document.getElementById('quiz-level').value;
+                        const numQuestions = document.getElementById('quiz-num-questions').value;
+                        const recaptchaElement = document.querySelector('.g-recaptcha');
+                        const questionElement = document.getElementById('quizQuestion');
+                        const spinner = document.getElementById('quizLoadingSpinner');
+                        const optionsElement = document.getElementById('quizOptions');
+                        const resultElement = document.getElementById('quizResult');
+                        const navigationElement = document.getElementById('quizNavigation');
 
-                // Show reCAPTCHA
-                recaptchaElement.style.display = 'inline-block';
-                const recaptchaResponse = grecaptcha.getResponse();
-                if (!recaptchaResponse) {
-                    questionElement.innerText = "";
-                    optionsElement.innerHTML = '';
-                    resultElement.innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA to start the quiz.</p>';
+                        // Show reCAPTCHA
+                        recaptchaElement.style.display = 'inline-block';
+                        const recaptchaResponse = grecaptcha.getResponse();
+                        if (!recaptchaResponse) {
+                            questionElement.innerText = "";
+                            optionsElement.innerHTML = '';
+                            resultElement.innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA to start the quiz.</p>';
+                            resultElement.style.display = 'block';
+                            navigationElement.style.display = 'none';
+                            return;
+                        }
+
+                        // Show loading spinner and disable button
+                        spinner.style.display = 'block';
+                        questionElement.innerText = "Loading questions...";
+                        document.getElementById('fetchQuizButton').disabled = true;
+
+                        const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g_recaptcha_response=${encodeURIComponent(recaptchaResponse)}`);
+
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
+                        }
+
+                        quizQuestions = await response.json();
+                        currentQuestionIndex = 0;
+                        selectedAnswer = null;
+                        correctAnswers = 0; // Reset correct answers for new quiz
+                        showCurrentQuestion();
+                        navigationElement.style.display = 'flex';
+                        grecaptcha.reset();
+                        recaptchaElement.style.display = 'none'; // Hide reCAPTCHA after successful fetch
+                    } catch (error) {
+                        console.error("Error fetching quiz:", error);
+                        let errorMessage = "Failed to load quiz. Please try again later.";
+                        if (error.message.includes("reCAPTCHA")) {
+                            errorMessage = "reCAPTCHA verification failed. Please try again.";
+                        }
+                        document.getElementById('quizQuestion').innerText = "Failed to load quiz.";
+                        document.getElementById('quizOptions').innerHTML = '';
+                        document.getElementById('quizResult').innerHTML = `<p class="quiz-error">${errorMessage}</p>`;
+                        document.getElementById('quizResult').style.display = 'block';
+                        document.getElementById('quizNavigation').style.display = 'none';
+                        document.querySelector('.g-recaptcha').style.display = 'none'; // Hide reCAPTCHA on error
+                    } finally {
+                        document.getElementById('quizLoadingSpinner').style.display = 'none';
+                        // Do NOT re-enable fetchQuizButton here; it remains disabled until reCAPTCHA
+                    }
+                }
+
+                function showCurrentQuestion() {
+                    const question = quizQuestions[currentQuestionIndex];
+                    const questionElement = document.getElementById('quizQuestion');
+                    const optionsElement = document.getElementById('quizOptions');
+                    const resultElement = document.getElementById('quizResult');
+                    const submitButton = document.getElementById('submitAnswerButton');
+                    const nextButton = document.getElementById('nextQuestionButton');
+                    const showResultsButton = document.getElementById('showResultsButton');
+
+                    if (question) {
+                        questionElement.innerText = question.question;
+                        optionsElement.innerHTML = question.options.map((option, index) => `
+                            <div class="quiz-option" onclick="selectOption(${index})">${option}</div>
+                        `).join('');
+                        resultElement.style.display = 'none';
+                        resultElement.innerHTML = '';
+                        selectedAnswer = null;
+                        submitButton.style.display = 'block';
+                        nextButton.style.display = 'none';
+                        showResultsButton.style.display = 'none';
+                    } else {
+                        questionElement.innerText = "No questions available.";
+                        optionsElement.innerHTML = '';
+                        resultElement.innerHTML = '';
+                        submitButton.style.display = 'none';
+                        nextButton.style.display = 'none';
+                        showResultsButton.style.display = 'none';
+                    }
+                }
+
+                function selectOption(index) {
+                    const options = document.getElementsByClassName('quiz-option');
+                    for (let i = 0; i < options.length; i++) {
+                        options[i].classList.remove('selected');
+                    }
+                    options[index].classList.add('selected');
+                    selectedAnswer = quizQuestions[currentQuestionIndex].options[index];
+                }
+
+                function submitAnswer() {
+                    const question = quizQuestions[currentQuestionIndex];
+                    const resultElement = document.getElementById('quizResult');
+                    const options = document.getElementsByClassName('quiz-option');
+                    const submitButton = document.getElementById('submitAnswerButton');
+                    const nextButton = document.getElementById('nextQuestionButton');
+                    const showResultsButton = document.getElementById('showResultsButton');
+
+                    if (!selectedAnswer) {
+                        resultElement.innerHTML = '<p class="quiz-error">Please select an answer.</p>';
+                        resultElement.style.display = 'block';
+                        return;
+                    }
+
+                    const isCorrect = selectedAnswer === question.correctAnswer;
+                    if (isCorrect) {
+                        correctAnswers++; // Increment correct answers
+                    }
+
+                    for (let i = 0; i < options.length; i++) {
+                        const option = options[i];
+                        if (option.innerText === question.correctAnswer) {
+                            option.classList.add('correct');
+                        } else if (option.innerText === selectedAnswer && !isCorrect) {
+                            option.classList.add('wrong');
+                        }
+                    }
+
+                    resultElement.innerHTML = `
+                        <p class="quiz-explanation">${isCorrect ? 'Correct!' : 'Incorrect.'} ${question.explanation}</p>
+                    `;
                     resultElement.style.display = 'block';
+                    submitButton.style.display = 'none';
+
+                    if (currentQuestionIndex < quizQuestions.length - 1) {
+                        nextButton.style.display = 'block';
+                        showResultsButton.style.display = 'none';
+                    } else {
+                        showResultsButton.style.display = 'block';
+                        nextButton.style.display = 'none';
+                    }
+                }
+
+                function showNextQuestion() {
+                    if (currentQuestionIndex < quizQuestions.length - 1) {
+                        currentQuestionIndex++;
+                        showCurrentQuestion();
+                    }
+                }
+
+                function showResults() {
+                    const resultElement = document.getElementById('quizResult');
+                    const questionElement = document.getElementById('quizQuestion');
+                    const optionsElement = document.getElementById('quizOptions');
+                    const navigationElement = document.getElementById('quizNavigation');
+                    const showResultsButton = document.getElementById('showResultsButton');
+                    const fetchQuizButton = document.getElementById('fetchQuizButton');
+
+                    resultElement.innerHTML = `
+                        <p class="quiz-explanation">Quiz completed! You got ${correctAnswers} out of ${quizQuestions.length} correct!</p>
+                        <p class="quiz-explanation">Click 'Start Quiz' to begin a new quiz.</p>
+                    `;
+                    questionElement.innerText = "Click 'Start Quiz' to begin.";
+                    optionsElement.innerHTML = '';
                     navigationElement.style.display = 'none';
-                    return;
+                    showResultsButton.style.display = 'none';
+                    fetchQuizButton.disabled = true; // Keep button disabled until reCAPTCHA
+
+                    // Reset quiz state
+                    quizQuestions = [];
+                    currentQuestionIndex = 0;
+                    selectedAnswer = null;
+                    correctAnswers = 0;
                 }
-
-                // Show loading spinner and disable button
-                spinner.style.display = 'block';
-                questionElement.innerText = "Loading questions...";
-                document.getElementById('fetchQuizButton').disabled = true;
-
-                // Fixed syntax error in fetch URL
-                const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g_recaptcha_response=${encodeURIComponent(recaptchaResponse)}`);
-
-                if (!response.ok) {
-                    const errorData = await response.json();
-                    throw new Error(errorData.detail || `HTTP error! Status: ${response.status}`);
-                }
-
-                quizQuestions = await response.json();
-                currentQuestionIndex = 0;
-                selectedAnswer = null;
-                correctAnswers = 0; // Reset correct answers for new quiz
-                showCurrentQuestion();
-                navigationElement.style.display = 'flex';
-                grecaptcha.reset();
-                recaptchaElement.style.display = 'none'; // Hide reCAPTCHA after successful fetch
-            } catch (error) {
-                console.error("Error fetching quiz:", error);
-                let errorMessage = "Failed to load quiz. Please try again later.";
-                if (error.message.includes("reCAPTCHA")) {
-                    errorMessage = "reCAPTCHA verification failed. Please try again.";
-                }
-                document.getElementById('quizQuestion').innerText = "Failed to load quiz.";
-                document.getElementById('quizOptions').innerHTML = '';
-                document.getElementById('quizResult').innerHTML = `<p class="quiz-error">${errorMessage}</p>`;
-                document.getElementById('quizResult').style.display = 'block';
-                document.getElementById('quizNavigation').style.display = 'none';
-                document.querySelector('.g-recaptcha').style.display = 'none'; // Hide reCAPTCHA on error
-            } finally {
-                // Hide loading spinner
-                document.getElementById('quizLoadingSpinner').style.display = 'none';
-                // Do NOT re-enable fetchQuizButton here; handled in submitAnswer
-            }
-        }
-
-        function showCurrentQuestion() {
-            const question = quizQuestions[currentQuestionIndex];
-            const questionElement = document.getElementById('quizQuestion');
-            const optionsElement = document.getElementById('quizOptions');
-            const resultElement = document.getElementById('quizResult');
-            const submitButton = document.getElementById('submitAnswerButton');
-            const nextButton = document.getElementById('nextQuestionButton');
-
-            if (question) {
-                questionElement.innerText = question.question;
-                optionsElement.innerHTML = question.options.map((option, index) => `
-                    <div class="quiz-option" onclick="selectOption(${index})">${option}</div>
-                `).join('');
-                resultElement.style.display = 'none';
-                resultElement.innerHTML = '';
-                selectedAnswer = null;
-                submitButton.style.display = 'block';
-                nextButton.style.display = 'none';
-            } else {
-                questionElement.innerText = "No questions available.";
-                optionsElement.innerHTML = '';
-                resultElement.innerHTML = '';
-                submitButton.style.display = 'none';
-                nextButton.style.display = 'none';
-            }
-        }
-
-        function selectOption(index) {
-            const options = document.getElementsByClassName('quiz-option');
-            for (let i = 0; i < options.length; i++) {
-                options[i].classList.remove('selected');
-            }
-            options[index].classList.add('selected');
-            selectedAnswer = quizQuestions[currentQuestionIndex].options[index];
-        }
-
-        function submitAnswer() {
-            const question = quizQuestions[currentQuestionIndex];
-            const resultElement = document.getElementById('quizResult');
-            const options = document.getElementsByClassName('quiz-option');
-            const submitButton = document.getElementById('submitAnswerButton');
-            const nextButton = document.getElementById('nextQuestionButton');
-            const fetchQuizButton = document.getElementById('fetchQuizButton');
-
-            if (!selectedAnswer) {
-                resultElement.innerHTML = '<p class="quiz-error">Please select an answer.</p>';
-                resultElement.style.display = 'block';
-                return;
-            }
-
-            const isCorrect = selectedAnswer === question.correctAnswer;
-            if (isCorrect) {
-                correctAnswers++; // Increment correct answers
-            }
-
-            for (let i = 0; i < options.length; i++) {
-                const option = options[i];
-                if (option.innerText === question.correctAnswer) {
-                    option.classList.add('correct');
-                } else if (option.innerText === selectedAnswer && !isCorrect) {
-                    option.classList.add('wrong');
-                }
-            }
-
-            resultElement.innerHTML = `
-                <p class="quiz-explanation">${isCorrect ? 'Correct!' : 'Incorrect.'} ${question.explanation}</p>
-            `;
-            resultElement.style.display = 'block';
-            submitButton.style.display = 'none';
-
-            if (currentQuestionIndex < quizQuestions.length - 1) {
-                nextButton.style.display = 'block';
-            } else {
-                // Quiz is complete; show score and re-enable Start Quiz button
-                resultElement.innerHTML += `
-                    <p class="quiz-explanation">Quiz completed! You got ${correctAnswers} out of ${quizQuestions.length} correct!</p>
-                    <p class="quiz-explanation">Click 'Start Quiz' to begin a new quiz.</p>
-                `;
-                fetchQuizButton.disabled = false; // Re-enable Start Quiz button
-                // Reset quiz state
-                quizQuestions = [];
-                currentQuestionIndex = 0;
-                selectedAnswer = null;
-                correctAnswers = 0; // Reset correct answers
-                document.getElementById('quizQuestion').innerText = "Click 'Start Quiz' to begin.";
-                document.getElementById('quizOptions').innerHTML = '';
-                document.getElementById('quizNavigation').style.display = 'none';
-            }
-        }
-
-        function showNextQuestion() {
-            if (currentQuestionIndex < quizQuestions.length - 1) {
-                currentQuestionIndex++;
-                showCurrentQuestion();
-            }
-        }
-        </script>
-      </div>
+            </script>
+        </div>
     </section>
 
     <!-- Dictionary Section -->
