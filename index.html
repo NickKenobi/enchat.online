@@ -404,7 +404,7 @@
                     <option value="15">15 Questions</option>
                     <option value="20">20 Questions</option>
                 </select>
-                <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()" disabled>Start Quiz</button>
+                <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()">Start Quiz</button>
             </div>
             <div class="d-flex justify-content-center">
                 <div class="g-recaptcha"
@@ -445,9 +445,12 @@
                         const optionsElement = document.getElementById('quizOptions');
                         const resultElement = document.getElementById('quizResult');
                         const navigationElement = document.getElementById('quizNavigation');
+                        const fetchQuizButton = document.getElementById('fetchQuizButton');
 
-                        // Show reCAPTCHA
+                        // Show reCAPTCHA and disable Start Quiz button
                         recaptchaElement.style.display = 'inline-block';
+                        fetchQuizButton.disabled = true;
+
                         const recaptchaResponse = grecaptcha.getResponse();
                         if (!recaptchaResponse) {
                             questionElement.innerText = "";
@@ -458,10 +461,9 @@
                             return;
                         }
 
-                        // Show loading spinner and disable button
+                        // Show loading spinner
                         spinner.style.display = 'block';
                         questionElement.innerText = "Loading questions...";
-                        document.getElementById('fetchQuizButton').disabled = true;
 
                         const response = await fetch(`${QUIZ_API_URL}?num_questions=${numQuestions}&level=${level}&g_recaptcha_response=${encodeURIComponent(recaptchaResponse)}`);
 
@@ -490,9 +492,10 @@
                         document.getElementById('quizResult').style.display = 'block';
                         document.getElementById('quizNavigation').style.display = 'none';
                         document.querySelector('.g-recaptcha').style.display = 'none'; // Hide reCAPTCHA on error
+                        // Re-enable Start Quiz button to allow retry
+                        document.getElementById('fetchQuizButton').disabled = false;
                     } finally {
                         document.getElementById('quizLoadingSpinner').style.display = 'none';
-                        // Do NOT re-enable fetchQuizButton here; it remains disabled until reCAPTCHA
                     }
                 }
 
@@ -508,8 +511,8 @@
                     if (question) {
                         questionElement.innerText = question.question;
                         optionsElement.innerHTML = question.options.map((option, index) => `
-                            <div class="quiz-option" onclick="selectOption(${index})">${option}</div>
-                        `).join('');
+                        <div class="quiz-option" onclick="selectOption(${index})">${option}</div>
+                    `).join('');
                         resultElement.style.display = 'none';
                         resultElement.innerHTML = '';
                         selectedAnswer = null;
@@ -564,8 +567,8 @@
                     }
 
                     resultElement.innerHTML = `
-                        <p class="quiz-explanation">${isCorrect ? 'Correct!' : 'Incorrect.'} ${question.explanation}</p>
-                    `;
+                    <p class="quiz-explanation">${isCorrect ? 'Correct!' : 'Incorrect.'} ${question.explanation}</p>
+                `;
                     resultElement.style.display = 'block';
                     submitButton.style.display = 'none';
 
@@ -594,14 +597,14 @@
                     const fetchQuizButton = document.getElementById('fetchQuizButton');
 
                     resultElement.innerHTML = `
-                        <p class="quiz-explanation">Quiz completed! You got ${correctAnswers} out of ${quizQuestions.length} correct!</p>
-                        <p class="quiz-explanation">Click 'Start Quiz' to begin a new quiz.</p>
-                    `;
+                    <p class="quiz-explanation">Quiz completed! You got ${correctAnswers} out of ${quizQuestions.length} correct!</p>
+                    <p class="quiz-explanation">Click 'Start Quiz' to begin a new quiz.</p>
+                `;
                     questionElement.innerText = "Click 'Start Quiz' to begin.";
                     optionsElement.innerHTML = '';
                     navigationElement.style.display = 'none';
                     showResultsButton.style.display = 'none';
-                    fetchQuizButton.disabled = true; // Keep button disabled until reCAPTCHA
+                    fetchQuizButton.disabled = false; // Enable Start Quiz button to show reCAPTCHA
 
                     // Reset quiz state
                     quizQuestions = [];
