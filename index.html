@@ -306,6 +306,16 @@
             text-align: center;
             box-sizing: border-box;
         }
+        .recaptcha-scroll-wrapper {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            width: 100%;
+        }
+
+        .recaptcha-inner {
+            width: 304px; /* reCAPTCHA default width */
+            margin: 0 auto;
+        }
         .g-recaptcha {
             display: none;
             margin-bottom: 15px;
@@ -415,10 +425,12 @@
             </select>
             <button class="control-button btn btn-primary w-100 w-md-auto" id="fetchQuizButton" onclick="fetchQuiz()">Start Quiz</button>
         </div>
-        <div class="d-flex justify-content-center">
-            <div class="g-recaptcha"
-                 data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
-                 data-callback="onRecaptchaSuccess">
+        <div class="recaptcha-scroll-wrapper">
+            <div class="recaptcha-inner">
+                <div class="g-recaptcha"
+                     data-sitekey="6LdTJIkrAAAAAHUDf7jWIyz9d2yjldvpYncFhMKi"
+                     data-callback="onRecaptchaSuccess">
+                </div>
             </div>
         </div>
         <div class="quiz-text-wrapper">
