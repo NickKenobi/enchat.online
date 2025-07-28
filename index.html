@@ -163,7 +163,7 @@
       .submit-button:hover {
         background-color: #218838;
       }
-      .quote-text-wrapper, .idiom-text-wrapper, .quiz-text-wrapper {
+      .quote-text-wrapper, .idiom-text-wrapper {
         flex-grow: 1;
         max-height: 100%;
         overflow-y: auto;
@@ -450,7 +450,7 @@
 
               const recaptchaResponse = grecaptcha.getResponse();
               if (!recaptchaResponse) {
-                questionElement.innerText = "Please complete the reCAPTCHA.";
+                questionElement.innerText = "";
                 optionsElement.innerHTML = '';
                 resultElement.innerHTML = '<p class="quiz-error">Please complete the reCAPTCHA to start the quiz.</p>';
                 resultElement.style.display = 'block';
